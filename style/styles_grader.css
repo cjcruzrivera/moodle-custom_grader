@@ -1,7 +1,7 @@
 .is_ases,
 .is_ases th,
 .is_ases td {
-    background-color: gray!important;
+    background-color: #bdf2bd!important;
 }
 
 #user-grades td {
@@ -52,3 +52,28 @@
 .table-grader th {
     border: 1px solid #ccc;
 }
+
+.category-mini-menu:hover{
+    cursor: pointer;
+}
+
+.fa-trash{
+    cursor: pointer;
+}
+
+.th-item-category{
+    background-color: #eae9e9 !important;
+}
+
+.th-item-course{
+    background-color: #eae9e9 !important;
+}
+
+th:last-child{
+    background-color: #eae9e9 !important;
+}
+
+.th-filler{
+    background-color: red;
+}
+

@@ -630,7 +630,7 @@ define([
                     :content="aggregationCoef | round(2)" 
                     v-if="parentCategory.aggregation == weightedAggregation"
                     ></editable>
-                    <category-mini-menu v-bind:categoryId="category.id" v-show="true"></category-mini-menu>
+                    <category-mini-menu v-bind:categoryId="category.id" v-show="showMenu"></category-mini-menu>
                 </flex-row>
             </th>
        `,
@@ -794,7 +794,7 @@ define([
                      @update="saveAggregationCoefChanges($event)" 
                      v-if="parentCategory.aggregation == weightedAggregation"
                      ></editable>
-                    <item-mini-menu v-show="true" v-bind:itemId="item.id"></item-mini-menu>
+                    <item-mini-menu v-show="showMenuItems" v-bind:itemId="item.id"></item-mini-menu>
                 </flex-row>
                 </th>
    `,       data: function () {
@@ -849,7 +849,7 @@ define([
 
         var ThItemCategory = Vue.component('th-item-category', {
             template : `         
-                <th class="th-item-category"v-bind:colspan="colspan" >
+                <th class="th-item-category"v-bind:colspan="colspan">
                             {{itemName}}
                 </th>
    `,
@@ -901,8 +901,9 @@ define([
         var TdGrade = Vue.component('td-grade',
             {
                template: `
-                <td  class="td-grade"> 
-                {{item.itemtype}}
+                <td  class="td-grade"
+                v-bind:style="this.inputDisabled? { 'background-color': '#e1e4fe!important' } : { }"> 
+                <!--{{item.itemtype}}-->
                 <input 
                 class="grade-input"
                 v-bind:disabled="inputDisabled" 
@@ -939,6 +940,7 @@ define([
                       return (this.itemIndex + 1) * this.studentsCount +  this.studentIndex + 1;
                     },
                     inputDisabled: function () {
+
                         return this.item.itemtype==='category' || this.item.itemtype==='course' ;
                     },
                     grade: function() {
