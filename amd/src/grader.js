@@ -463,7 +463,7 @@ define([
                 <div class ="category-mini-menu" v-bind:style="style">
                     <i class="fa fa-edit" v-on:click="showEditDialog"></i>
                     <i class="fa fa-plus" v-on:click="showAddElementDialog"></i>
-                    <i class="fa fa-trash" v-show="showDelete" v-on:click="showDeleteElementDialog"></i>
+                    <i class="fa fa-trash" v-show="showDelete"" v-on:click="showDeleteElementDialog"></i>
                 </div>
             `,
         props: {
