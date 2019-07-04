@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bea947ae-f6ca-4b97-b6e8-a82b06fc6711" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/customgrader.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader-component-main.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader-component-main.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader-constants.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader-constants.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader-enums.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader-enums.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader-filters.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader-filters.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader-router.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader-router.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader-service.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader-service.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader-store.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader-store.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader-utils.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader-utils.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/grader.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/grader.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-loading-indicator.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-loading-indicator.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-lodash.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-lodash.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-vue-flex.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-vue-flex.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-vue-js-modal.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-vue-js-modal.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-vue-resource.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-vue-resource.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-vue-router.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-vue-router.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-vue-toasted.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-vue-toasted.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-vue.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-vue.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/build/vendor-vuex.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/build/vendor-vuex.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader-component-main.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader-component-main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader-constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader-constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader-enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader-enums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader-filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader-filters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader-router.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader-router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/grader.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/grader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-loading-indicator.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-loading-indicator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-lodash.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-lodash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-vue-flex.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-vue-flex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-vue-js-modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-vue-js-modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-vue-resource.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-vue-resource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-vue-router.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-vue-router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-vue-toasted.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-vue-toasted.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-vue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vendor-vuex.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vendor-vuex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/API/APIFunction.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/API/APIFunction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/API/BaseAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/API/BaseAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/API/BaseAPIView.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/API/BaseAPIView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Errors/CustomError.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Errors/CustomError.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Errors/ErrorFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Errors/ErrorFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Errors/Factories/APIErrorFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Errors/Factories/APIErrorFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Errors/Factories/FieldValidationErrorFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Errors/Factories/FieldValidationErrorFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/ases_interface.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/ases_interface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/common/Validable.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/common/Validable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/custom_grade_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/custom_grade_category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/custom_grade_report_grader.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/custom_grade_report_grader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/externlib/_limonade.php" beforeDir="false" afterPath="$PROJECT_DIR$/externlib/_limonade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/externlib/route.php" beforeDir="false" afterPath="$PROJECT_DIR$/externlib/route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/managers/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/api_views.php" beforeDir="false" afterPath="$PROJECT_DIR$/managers/api_views.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/font-awesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/font-awesome.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/styles_grader.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/styles_grader.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/vue-flex.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/vue-flex.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/vue-js-modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/vue-js-modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/vue-toasted.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/vue-toasted.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/grader.vue.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/templates/grader.vue.mustache" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/amd/src/grader.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="469" column="41" selection-start-line="469" selection-start-column="41" selection-end-line="469" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/style/styles_grader.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1110">
+              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/amd/src/vendor-vuex.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4800">
+              <caret line="320" selection-start-line="320" selection-end-line="320" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>v-show</find>
+      <find>trash</find>
+      <find>itemname</find>
+      <find>grade</find>
+      <find>?</find>
+      <find>v-bind:style</find>
+      <find>input</find>
+      <find>inputDisabled</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/style/styles_grader.css" />
+        <option value="$PROJECT_DIR$/amd/src/grader.js" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="31" />
+    <option name="width" value="800" />
+    <option name="height" value="869" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bea947ae-f6ca-4b97-b6e8-a82b06fc6711" name="Default Changelist" comment="" />
+      <created>1561654537048</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1561654537048</updated>
+      <workItem from="1561654540384" duration="90000" />
+      <workItem from="1561728369956" duration="783000" />
+      <workItem from="1561730836945" duration="2318000" />
+      <workItem from="1561740349574" duration="559000" />
+      <workItem from="1562172226746" duration="255000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4005000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-3" y="31" width="1606" height="872" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33825418" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/amd/src/grader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="469" column="41" selection-start-line="469" selection-start-column="41" selection-end-line="469" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/styles_grader.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-vuex.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4800">
+          <caret line="320" selection-start-line="320" selection-end-line="320" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
