@@ -21,7 +21,6 @@ define([
                 ...data,
                 course: COURSE_ID
             };
-            console.log(data_, 'data_ at api post');
             return Vue.http.post(`${BASE_URL}/api.php/${resource}`, data_)
                 .then( response=> response.body )
                 .catch(response => console.error(response));
@@ -31,7 +30,6 @@ define([
                 ...data,
                 course: COURSE_ID
             };
-            console.log(data_, 'data_ at api put');
             return Vue.http.put(`${BASE_URL}/api.php/${resource}`, data_)
                 .then( response=> response.body )
                 .catch(response => console.error(response));
@@ -41,42 +39,38 @@ define([
        get_grader_data: (courseId) => {
            return api_service.get(`grader/${courseId}`);
        },
+
        update_grade: (grade, courseId) => {
            const send_info = {...grade, courseid: courseId};
-           return api_service.put('grade', send_info);
+           return api_service.post('grade/update', send_info);
        },
        update_category: (category) => {
            const send_info = { category };
-           console.log(send_info, 'send info at category update');
-           return api_service.put('category', send_info);
-       },
-       add_category: (category, weight) => {
-           const send_info = { category,  weight};
-           console.log(send_info, 'send info at category creation');
-           return api_service.post('category', send_info);
-       },
-       add_item: (item) => {
-           const send_info = { item: item };
-           console.log(send_info, 'send info at item creation');
-           return api_service.post('item', send_info);
-       },
-       add_partial_exam: (partial_exam) => {
-         const send_info = { partial_exam };
-         console.log(partial_exam, 'partial exam to send');
-         return api_service.post('partial_exam', send_info)
-             .then(response => {
-                 console.log(response, 'respone at add artial exam');
-             })
+           return api_service.post('category/update', send_info);
        },
        update_item: (item) => {
            const send_info = { item };
-           return api_service.put('item', send_info);
+           return api_service.post('item/update', send_info);
        },
+
+       add_category: (category, weight) => {
+           const send_info = { category,  weight};
+           return api_service.post('category/add', send_info);
+       },
+       add_item: (item) => {
+           const send_info = { item: item };
+           return api_service.post('item/add', send_info);
+       },
+       add_partial_exam: (partial_exam) => {
+         const send_info = { partial_exam };
+         return api_service.post('partial_exam/add', send_info)
+       },
+
        delete_item: (itemId) => {
-           return api_service.delete(`/item/${itemId}`);
+           return api_service.get(`/item/delete/${itemId}`);
        },
        delete_category: (categoryId) => {
-           return api_service.delete(`/category/${categoryId}`);
+           return api_service.get(`/category/delete/${categoryId}`);
        }
    };
 });
