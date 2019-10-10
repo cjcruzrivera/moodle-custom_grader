@@ -4,6 +4,7 @@
     background-color: #bdf2bd!important;
 }
 
+
 #user-grades td {
     vertical-align: middle;
     text-align: center;
@@ -43,6 +44,13 @@
     border: 1px solid #ccc;
 }
 
+.customgrader table{
+    z-index: 4031;
+    position: relative;
+    background-color: #ffffff;
+}
+
+
 .td-grade input[type=number] {
     -moz-appearance: textfield; /* Firefox */
 }
@@ -61,6 +69,10 @@
     cursor: pointer;
 }
 
+.th-student{
+    background-color: #ffffff;
+}
+
 .th-item-category{
     background-color: #eae9e9 !important;
 }
@@ -71,4 +83,37 @@
 
 th:last-child{
     background-color: #eae9e9 !important;
+    position: sticky;
+    top: 0;
+}
+
+/*tr:nth-child(even) {
+    background-color: #6bf200
+}
+
+tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+    background-color: #f90010;
+}*/
+
+th{
+    position: sticky;
+    top: 0;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.th-item-manual-and-mod{
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.th-item-category{
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.th-student-names{
+    min-width: 300px;
+    max-width: 300px;
 }

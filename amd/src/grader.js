@@ -101,7 +101,7 @@ define([
     'local_customgrader/grader-component-main',
     'local_customgrader/grader-router',
     'local_customgrader/grader-filters',
-    'local_customgrader/grader-constants',
+    'local_customgrader/grader-constants'
     ], function (
         Vue,
         VueRouter,
@@ -698,7 +698,7 @@ define([
     });
     var ThStudentNames = Vue.component('th-student-names', {
        template: `
-       <th class="th-student-names"> 
+       <th class="th-student-names" :style="stickyStyles"> 
            <flex-row>
                <a v-on:click="changeOrderToLastame()">Apellidos</a> 
                <span>/ </span>
@@ -709,7 +709,14 @@ define([
         data: function () {
           return {
               lastNameDirectionAsc: true,
-              firstNameDirectionAsc: true
+              firstNameDirectionAsc: true,
+              stickyStyles: {
+                  position: 'sticky',
+                  top: '0',
+                  left: '0',
+                  'background-clip': 'padding-box',
+                  'z-index': '999999'
+              }
           }
         },
         methods: {
@@ -745,6 +752,7 @@ define([
                         v-if="items[itemId].itemtype === 'category'" 
                         v-bind:itemId="items[itemId].id" 
                         v-bind:colspan="1"
+                        :style="stickyStyles"
                         ></th-item-category> 
                         
                         <th-item-manual-and-mod 
@@ -764,6 +772,17 @@ define([
                 'additionalColumnsAtEnd',
                 'items'
             ])
+        },
+
+        data: function () {
+            return {
+                stickyStyles: {
+                    position: 'sticky',
+                    top: '0',
+                    'z-index': 4032,
+                    //'background-color': '#ffffff'
+                },
+            }
         },
     });
         Vue.component('editable',{
@@ -785,9 +804,10 @@ define([
                 v-cloak
                  @mouseover="showMenuItems = true"
                  @mouseout="showMenuItems = false"
+                 :title="item.itemname"
                 ><!--v-on:click="deleteItem(item.id)"-->
                 <flex-row v-bind:style="editZoneStyles" align-v="center">
-                    <editable :content="item.itemname" @update="saveNameChanges($event)"></editable>
+                    <editable :content="item.itemname  | trunc(20, '...')" @update="saveNameChanges($event)"></editable>
                     <editable
                      :sufix="'%'"
                      :content="item.aggregationcoef | round(2)" 
@@ -803,8 +823,9 @@ define([
                     editZoneStyles: {
                         display: 'grid',
                         gridTemplateColumns: 'repeat(3, max-content)',
-                        gridColumnGap: '5px'
-                    },
+                        gridColumnGap: '5px',
+                        'max-height': '20px'
+            },
                 }
             },
             props: ['itemId'],
@@ -849,8 +870,9 @@ define([
 
         var ThItemCategory = Vue.component('th-item-category', {
             template : `         
-                <th class="th-item-category"v-bind:colspan="colspan">
-                            {{itemName}}
+                <th class="th-item-category"v-bind:colspan="colspan"
+                 :title="itemName">
+                            {{itemName | trunc(20, '...')}}
                 </th>
    `,
             props: ['itemId', 'colspan'],
@@ -877,7 +899,7 @@ define([
             {
                 // language=HTML
                 template: `
-                <th class="th-student"scope="row">
+                <th class="th-student"scope="row" v-bind:style="stickyStyles">
                     {{studentFullName}}
                 </th>
                 `,
@@ -896,7 +918,19 @@ define([
                     studentFullName: function() {
                         return this.student.lastname + ' ' + this.student.firstname;
                     }
-                }
+                },
+
+                data: function () {
+                    return {
+                        stickyStyles: {
+                            position: 'sticky',
+                            left: '0',
+                            'background-clip': 'padding-box'
+                            //'z-index': 999999,
+                            //'background-color': '#ffffff'
+                        },
+                    }
+                },
             });
         var TdGrade = Vue.component('td-grade',
             {
@@ -1009,8 +1043,11 @@ define([
                 }
             }
             );
+
+
         // language=HTML
         var Grader = Vue.component(g_c_main.name, g_c_main.component);
+
 
 
     var Home = Vue.component('home', {
@@ -1030,7 +1067,8 @@ define([
         }
     });
     /** Filter registry */
-    Vue.filter (g_filters.round.name, g_filters.round.func);
+        Vue.filter (g_filters.round.name, g_filters.round.func);
+        Vue.filter (g_filters.trun.name, g_filters.trun.func);
 
     var router = new VueRouter({
         routes: g_router.routes
