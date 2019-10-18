@@ -807,7 +807,7 @@ define([
                  :title="item.itemname"
                 ><!--v-on:click="deleteItem(item.id)"-->
                 <flex-row v-bind:style="editZoneStyles" align-v="center">
-                    <editable :content="item.itemname  | trunc(20, '...')" @update="saveNameChanges($event)"></editable>
+                    <input v-model="content" :class="getClass" @focus="focus" @blur="blur" @keyup.enter="saveNameChanges" ></input>
                     <editable
                      :sufix="'%'"
                      :content="item.aggregationcoef | round(2)" 
@@ -817,27 +817,52 @@ define([
                     <item-mini-menu v-show="showMenuItems" v-bind:itemId="item.id"></item-mini-menu>
                 </flex-row>
                 </th>
-   `,       data: function () {
+   `,       created() {
+                let text = this.item.itemname;
+                let length = 18;
+                let clamp = '...';
+                let node = document.createElement('div');
+                node.innerHTML = text;
+                let contente = node.textContent;
+                this.content = contente.length > length ? contente.slice(0, length) + clamp : contente;
+            },
+            data: function () {
                 return {
                     showMenuItems: false,
+                    showFullName: false,
+                    getClass: 'notfocused',
+                    content: "",
+                    //length: 19,
                     editZoneStyles: {
-                        display: 'grid',
+                        /*display: 'grid',
                         gridTemplateColumns: 'repeat(3, max-content)',
-                        gridColumnGap: '5px',
+                        gridColumnGap: '5px',*/
                         'max-height': '20px'
-            },
+                    },
                 }
             },
             props: ['itemId'],
             methods: {
+                focus: function (){
+                    //this.length = 17;
+                    this.getClass = 'withfocus';
+                    this.showFullName = true;
+                    this.uptadeContent();
+                },
+                blur: function (){
+                    //this.length = 19;
+                    this.getClass = 'notfocused';
+                    this.showFullName = false;
+                    this.uptadeContent();
+                },
                 ...Vuex.mapActions({
                     deleteItem: g_store.actions.DELETE_ITEM
                 }),
-                saveNameChanges: function (itemName) {
-                    if (itemName !== this.item.itemname) {
+                saveNameChanges: function () {
+                    if (this.content !== this.item.itemname) {
                         this.$store.dispatch(
                             g_store.actions.UPDATE_ITEM,
-                            {...this.item, itemname: itemName}
+                            {...this.item, itemname: this.content}
                         );
                     }
                 },
@@ -847,6 +872,19 @@ define([
                             g_store.actions.UPDATE_ITEM,
                             {...this.item, aggregationcoef: itemAggregationCoef}
                         );
+                    }
+                },
+                uptadeContent: function(){
+                    if(this.showFullName){
+                        this.content = this.item.itemname;
+                    }else{
+                        let text = this.item.itemname;
+                        let length = 18;
+                        let clamp = '...';
+                        let node = document.createElement('div');
+                        node.innerHTML = text;
+                        let content = node.textContent;
+                        this.content = content.length > length ? content.slice(0, length) + clamp : content;
                     }
                 }
             },
@@ -864,7 +902,20 @@ define([
                 },
                 weightedAggregation: function (){
                     return g_enums.aggregations.PROMEDIO;
-                }
+                },
+                /*content: function () {
+                    if(this.showFullName){
+                        return this.item.itemname;
+                    }else{
+                        let text = this.item.itemname;
+                        let length = 18;
+                        let clamp = '...';
+                        let node = document.createElement('div');
+                        node.innerHTML = text;
+                        let content = node.textContent;
+                        return content.length > length ? content.slice(0, length) + clamp : content;
+                    }
+                }*/
             }
         });
 
@@ -925,7 +976,8 @@ define([
                         stickyStyles: {
                             position: 'sticky',
                             left: '0',
-                            'background-clip': 'padding-box'
+                            'background-clip': 'padding-box',
+                            'min-width': '400px!important'
                             //'z-index': 999999,
                             //'background-color': '#ffffff'
                         },
@@ -936,12 +988,12 @@ define([
             {
                template: `
                 <td  class="td-grade"
-                v-bind:style="this.inputDisabled? { 'background-color': '#e1e4fe!important' } : { }"> 
+                v-bind:style="this.inputDisabled? { 'background-color': '#e1e4fe' } : { }"> 
                 <!--{{item.itemtype}}-->
                 <input 
                 class="grade-input"
                 v-bind:disabled="inputDisabled" 
-                type="number" 
+                type="number"
                 v-bind:tabindex="tabIndex" 
                 v-bind:step="step"  
                 v-bind:max="grade.rawgrademax" 

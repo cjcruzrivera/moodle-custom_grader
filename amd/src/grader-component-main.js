@@ -5,11 +5,11 @@ define([
 ], function (Vuex, g_enums, g_store) {
     var template = `
             <div class="customgrader">
-                <table v-if="students.length > 0" id="user-grades"  class="table table-striped">
+                <table v-if="students.length > 0" id="user-grades"  class="table">
                     <tbody>
                         <!-- COURSE_TR -->
                         <tr class="GridViewScrollHeader" >
-                            <th-course colspan="gradeHeaderColspan"></th-course>
+                            <th-course colspan="2"></th-course>
                         </tr>
                         <!-- END OF COURSE_TR -->
                         <!-- CATEGORIES_TRS-->
@@ -45,10 +45,6 @@ define([
                     <modal-add-element></modal-add-element>
                 </div>
                 <v-dialog/>
-            </div>
-            
-            <div id="chart">
-                <apexchart type=pie width=380 :options="chartOptions" :series="series" />
             </div>
     `;
     var name = 'Main';

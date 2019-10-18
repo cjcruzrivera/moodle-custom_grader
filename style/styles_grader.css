@@ -4,6 +4,10 @@
     background-color: #bdf2bd!important;
 }
 
+table{
+    border-collapse: separate;
+    border-spacing: 0;
+}
 
 #user-grades td {
     vertical-align: middle;
@@ -69,9 +73,9 @@
     cursor: pointer;
 }
 
-.th-student{
+/*.th-student{
     background-color: #ffffff;
-}
+}*/
 
 .th-item-category{
     background-color: #eae9e9 !important;
@@ -87,12 +91,16 @@ th:last-child{
     top: 0;
 }
 
-/*tr:nth-child(even) {
-    background-color: #6bf200
+tr:nth-child(even) {
+    background-color: #ffffff;
 }
 
-tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
-    background-color: #f90010;
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/*tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+    background-color: #f90010!important;
 }*/
 
 th{
@@ -101,6 +109,7 @@ th{
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding-box;
     background-clip: padding-box;
+    background-color: inherit;
 }
 
 .th-item-manual-and-mod{
@@ -116,4 +125,17 @@ th{
 .th-student-names{
     min-width: 300px;
     max-width: 300px;
+}
+
+.v--modal-overlay{
+    z-index: 99999999!important;
+}
+
+.notfocused{
+    background: rgba(255,255,255,0);
+    border: rgba(255,255,255,0);
+}
+
+.withfocus{
+    width: 170px;
 }
