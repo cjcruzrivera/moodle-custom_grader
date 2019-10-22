@@ -183,7 +183,6 @@ define([
                         </label>
                         <input :disabled="isCourseCategory" id="categoryFullName" v-model="categoryFullName">
                         <br />
-                        <br />
                         <label for="aggregation">
                         Tipo de calificación:
                         </label>
@@ -191,7 +190,6 @@ define([
                                 v-bind:initialAggregation="category.aggregation"
                                 v-on:changeAggregation="changeAggregation">
                         </select-aggregation>
-                        <br />
                         <br />
                         <br />
                         <div style="text-align:center; bottom:50px;">
@@ -318,12 +316,10 @@ define([
                </option>
            </select>
             <br/>
-           <br />
            <label :style="{ 'text-align': 'center' }" for="elementName">
             Nombre del elemento:
             </label>
             <input id="elementName" v-model="elementName">
-           <br />
            <br />
             <template v-if="parentCategory.aggregation == weigthedMeanOfGrades">
                 <label for="elementAggregationCoef">
@@ -334,7 +330,6 @@ define([
             id="elementAggregationCoef" 
             v-model="elementAggregationCoef" type="number">
             </template>
-            <br/>
             <br/>
             <template v-if="elementTypeId === categoryElementTypeId || elementTypeId === partialExamElementId">
                 <label >
