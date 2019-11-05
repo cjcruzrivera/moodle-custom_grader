@@ -796,9 +796,9 @@ define([
         data: function () {
             return {
                 stickyStyles: {
-                    position: 'sticky',
+                    /*position: 'sticky',
                     top: '0',
-                    'z-index': 4032,
+                    'z-index': 4032,*/
                     //'background-color': '#ffffff'
                 },
             }

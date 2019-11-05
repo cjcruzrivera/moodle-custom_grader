@@ -42,6 +42,12 @@ table{
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+.customgrader {
+    height: 40em;
+    overflow-x: auto;
+}
+
 .customgrader table,
 .customgrader table td,
 .customgrader table th {
@@ -49,9 +55,10 @@ table{
 }
 
 .customgrader table{
-    z-index: 4031;
+    z-index: 1029;
     position: relative;
     background-color: #ffffff;
+    width:  100%;
 }
 
 
@@ -87,8 +94,8 @@ table{
 
 th:last-child{
     background-color: #eae9e9 !important;
-    position: sticky;
-    top: 0;
+    /*position: sticky;
+    top: 0;*/
 }
 
 tr:nth-child(even) {
