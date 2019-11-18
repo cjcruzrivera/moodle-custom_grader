@@ -101,7 +101,8 @@ define([
     'local_customgrader/grader-component-main',
     'local_customgrader/grader-router',
     'local_customgrader/grader-filters',
-    'local_customgrader/grader-constants'
+    'local_customgrader/grader-constants',
+    'local_customgrader/grader-graphs'
     ], function (
         Vue,
         VueRouter,
@@ -118,7 +119,8 @@ define([
         g_c_main,
         g_router,
         g_filters,
-        g_const){
+        g_const,
+        g_graph){
     Vue.use(VueRouter);
     Vue.use(Vuex);
     Vue.use(VueResource);
@@ -408,6 +410,7 @@ define([
                         this.$toasted.show(
                             `Se ha añadido el item '${item.itemname}'`,
                             { duration : 3000, icon: 'fa fa-check'});
+                        this.$router.go();
                     })
                     .catch(() => {
                         this.$toasted.show(
@@ -425,6 +428,7 @@ define([
                         this.$toasted.show(
                             `Se ha añadido el parcial '${partialExam.itemname}'`,
                             { duration : 3000, icon: 'fa fa-check'});
+                        this.$router.go();
                     })
                     .catch(() => {
                         this.$toasted.show(
@@ -442,6 +446,7 @@ define([
                       this.$toasted.show(
                           `Se ha añadido la categoria '${category.fullname}'`,
                           { duration : 3000, icon: 'fa fa-check'});
+                      this.$router.go();
                   })
                   .catch(() => {
                       this.$toasted.show(
@@ -465,16 +470,40 @@ define([
     var ItemMiniMenu = Vue.component('item-mini-menu', {
         template: `
                 <div>
-                    <i class="fa fa-trash" v-on:click="deleteItem()"></i>
+                    <i class="fa fa-trash" v-on:click="showDeleteItemDialog()"></i>
                 </div>
             `,
             props: ['itemId'],
             methods: {
-                deleteItem() {
-                    loading_indicator.show();
-                    this.$store.dispatch(g_store.actions.DELETE_ITEM, this.itemId)
-                        .then(()=>loading_indicator.hide());
-                    }
+                deleteItem(){
+                    return this.$store.dispatch(g_store.actions.DELETE_ITEM, this.itemId)
+                        .then(()=> {
+                            this.$toasted.show('Se ha borrado el item', {duration: 3000});
+                            this.$router.go();
+                        })
+                        .catch(()=> {
+                            this.$toasted.
+                            show('Ha habido un error al borrar el item, no se ha borrado', {duration: 3000, theme:'bubble'});
+                        });
+                },
+                showDeleteItemDialog() {
+                    this.$modal.show('dialog', {
+                        title: 'Eliminación de item',
+                        text: 'Estas a punto de eliminar un item',
+                        buttons: [
+                            {
+                                title: 'Borrar',
+                                handler: () => {
+                                    this.deleteItem()
+                                        .finally(()=>this.$modal.hide('dialog'));
+                                }
+                            },
+                            {
+                                title: 'Cancelar'
+                            }
+                        ]
+                    })
+                },
                 }
             }
         );
@@ -521,6 +550,7 @@ define([
               return this.$store.dispatch(g_store.actions.DELETE_CATEGORY, this.categoryId)
                   .then(()=> {
                       this.$toasted.show('Se ha borrado la categoria', {duration: 3000});
+                      this.$router.go();
                   })
                   .catch(()=> {
                       this.$toasted.
@@ -637,30 +667,45 @@ define([
     var ThCategory = Vue.component('th-category', {
        template : `    
             <th
+            :title="category.fullname"
             class="th-category"
             @mouseover="showMenu = true"
             @mouseout="showMenu = false" 
             v-bind:colspan="childSize" >
                 <flex-row align-v="center"  v-bind:style="editZoneStyles">
-                    {{ category.fullname }}
-                    <editable 
-                    :sufix="'%'" 
-                    @update="saveAggregationCoef($event)"
-                    :content="aggregationCoef | round(2)" 
-                    v-if="parentCategory.aggregation == weightedAggregation"
-                    ></editable>
+                    <input v-model="catName" :class="getCatClass" @focus="catFocus" @blur="catBlur" @keydown.enter="updateCategoryName" @keyup.enter="$event.target.blur()"></input>
+                    <input
+                     v-model="catWeight" 
+                     :class="catGetWeightClass"
+                     @focus="catWFocus" @blur="catWBlur"
+                     @keydown.enter="saveAggregationCoef" 
+                     @keyup.enter="$event.target.blur()"
+                     v-if="parentCategory.aggregation == weightedAggregation"
+                     ></input>
                     <category-mini-menu v-bind:categoryId="category.id" v-show="showMenu"></category-mini-menu>
                 </flex-row>
             </th>
        `,
+        created() {
+            let text = this.category.fullname;
+            let length = 30;
+            let clamp = '...';
+            let node = document.createElement('div');
+            node.innerHTML = text;
+            let content = node.textContent;
+            this.catName = content.length > length ? content.slice(0, length) + clamp : content;
+            this.catWeight = this.$options.filters.round(this.aggregationCoef, 2) + '%';
+        },
         props: ['element'],
         data: function() {
            return {
-               categoryName: '',
+               showFullName: false,
+               getCatClass: 'catnotfocused',
+               catGetWeightClass: 'catwnotfocused',
+               catName: "",
+               catWeight: "",
                editZoneStyles: {
-                   display: 'grid',
-                   gridTemplateColumns: 'repeat(3, max-content)',
-                   gridColumnGap: '5px'
+                   'max-height': '45px'
                },
                showMenu: false
            }
@@ -689,23 +734,54 @@ define([
             weightedAggregation : function () {
                 return g_enums.aggregations.PROMEDIO
             }
-
-        },
-        mounted: function (){
-          this.categoryName = this.category.fullname;
         },
         methods: {
-            updateCategoryName: function (categoryName) {
+            catFocus: function (){
+                //this.length = 17;
+                this.getCatClass = 'catwithfocus';
+                this.showFullName = true;
+                this.uptadeCatName();
+            },
+            catBlur: function (){
+                //this.length = 19;
+                this.getCatClass = 'catnotfocused';
+                this.showFullName = false;
+                this.uptadeCatName();
+            },
+            catWFocus: function (){
+                this.catGetWeightClass = 'catwwithfocus';
+                this.showFullName = true;
+                this.updateWeight();
+            },
+            catWBlur: function (){
+                this.catGetWeightClass = 'catwnotfocused';
+                this.showFullName = false;
+                this.updateWeight();
+            },
+            updateCategoryName: function () {
              this.$store.dispatch(
                  g_store.actions.UPDATE_CATEGORY,
-                 {...this.category, fullname: categoryName})
+                 {...this.category, fullname: this.catName})
            },
-            saveAggregationCoef: function(categoryAggregationCoef) {
-                if(categoryAggregationCoef !== this.aggregationCoef) {
+            saveAggregationCoef: function() {
+                if(this.catWeight !== this.aggregationCoef) {
                     this.$store.dispatch(g_store.actions.UPDATE_ITEM,
-                        {...this.categoryGradeItem, aggregationcoef: categoryAggregationCoef})
+                        {...this.categoryGradeItem, aggregationcoef: this.catWeight})
                 }
             },
+            uptadeCatName: function(){
+                if(this.showFullName){
+                    this.catName = this.category.fullname;
+                }else{
+                    this.catName = this.$options.filters.trunc(this.category.fullname, 30);
+                }
+            },
+            updateWeight: function(){
+                this.catWeight = this.$options.filters.round(this.aggregationCoef, 2);
+                if(this.catGetWeightClass === 'catwnotfocused'){
+                    this.catWeight += '%';
+                }
+            }
            }
     });
 
@@ -826,13 +902,15 @@ define([
                  :title="item.itemname"
                 ><!--v-on:click="deleteItem(item.id)"-->
                 <flex-row v-bind:style="editZoneStyles" align-v="center">
-                    <input v-model="content" :class="getClass" @focus="focus" @blur="blur" @keyup.enter="saveNameChanges" ></input>
-                    <editable
-                     :sufix="'%'"
-                     :content="item.aggregationcoef | round(2)" 
-                     @update="saveAggregationCoefChanges($event)" 
+                    <input v-model="content" :class="getClass" @focus="focus" @blur="blur" @keydown.enter="saveNameChanges" @keyup.enter="$event.target.blur()"></input>
+                    <input
+                     v-model="weight" 
+                     :class="getWeightClass"
+                     @focus="wfocus" @blur="wblur"
+                     @keydown.enter="saveAggregationCoefChanges" 
+                     @keyup.enter="$event.target.blur()"
                      v-if="parentCategory.aggregation == weightedAggregation"
-                     ></editable>
+                     ></input>
                     <item-mini-menu v-show="showMenuItems" v-bind:itemId="item.id"></item-mini-menu>
                 </flex-row>
                 </th>
@@ -844,13 +922,16 @@ define([
                 node.innerHTML = text;
                 let contente = node.textContent;
                 this.content = contente.length > length ? contente.slice(0, length) + clamp : contente;
+                this.weight = this.$options.filters.round(this.item.aggregationcoef, 2) + '%';
             },
             data: function () {
                 return {
                     showMenuItems: false,
                     showFullName: false,
-                    getClass: 'notfocused',
+                    getClass: 'inotfocused',
+                    getWeightClass: 'iwnotfocused',
                     content: "",
+                    weight: "",
                     //length: 19,
                     editZoneStyles: {
                         /*display: 'grid',
@@ -864,15 +945,25 @@ define([
             methods: {
                 focus: function (){
                     //this.length = 17;
-                    this.getClass = 'withfocus';
+                    this.getClass = 'iwithfocus';
                     this.showFullName = true;
                     this.uptadeContent();
                 },
                 blur: function (){
                     //this.length = 19;
-                    this.getClass = 'notfocused';
+                    this.getClass = 'inotfocused';
                     this.showFullName = false;
                     this.uptadeContent();
+                },
+                wfocus: function (){
+                    this.getWeightClass = 'iwwithfocus';
+                    this.showFullName = true;
+                    this.updateWeight();
+                },
+                wblur: function (){
+                    this.getWeightClass = 'iwnotfocused';
+                    this.showFullName = false;
+                    this.updateWeight();
                 },
                 ...Vuex.mapActions({
                     deleteItem: g_store.actions.DELETE_ITEM
@@ -885,11 +976,11 @@ define([
                         );
                     }
                 },
-                saveAggregationCoefChanges: function(itemAggregationCoef) {
-                    if (itemAggregationCoef !== this.item.aggregationcoef) {
+                saveAggregationCoefChanges: function() {
+                    if (this.weight !== this.item.aggregationcoef) {
                         this.$store.dispatch(
                             g_store.actions.UPDATE_ITEM,
-                            {...this.item, aggregationcoef: itemAggregationCoef}
+                            {...this.item, aggregationcoef: this.weight}
                         );
                     }
                 },
@@ -904,6 +995,12 @@ define([
                         node.innerHTML = text;
                         let content = node.textContent;
                         this.content = content.length > length ? content.slice(0, length) + clamp : content;
+                    }
+                },
+                updateWeight: function(){
+                    this.weight = this.$options.filters.round(this.item.aggregationcoef, 2);
+                    if(this.getWeightClass === 'iwnotfocused'){
+                        this.weight += '%';
                     }
                 }
             },
@@ -1119,8 +1216,6 @@ define([
         // language=HTML
         var Grader = Vue.component(g_c_main.name, g_c_main.component);
 
-
-
     var Home = Vue.component('home', {
         template: '<div>hola</div>',
         computed: {
@@ -1159,9 +1254,12 @@ define([
      });
 
 
+
+
     return {
         init: function() {
             app.$mount('#app');
+
             $(document).ready(function() {
 
             });

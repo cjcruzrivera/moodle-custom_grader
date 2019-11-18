@@ -44,7 +44,7 @@ table{
 }
 
 .customgrader {
-    height: 40em;
+    height: 12.5cm;
     overflow-x: auto;
 }
 
@@ -138,11 +138,45 @@ th{
     z-index: 99999999!important;
 }
 
-.notfocused{
+.inotfocused{
     background: rgba(255,255,255,0);
     border: rgba(255,255,255,0);
 }
 
-.withfocus{
+.iwithfocus{
     width: 170px;
+}
+
+.iwnotfocused{
+    background: rgba(255,255,255,0);
+    border: rgba(255,255,255,0);
+    width: 40px;
+}
+
+.iwwithfocus{
+    width: 40px;
+}
+
+.catnotfocused{
+    background: rgba(255,255,255,0);
+    border: rgba(255,255,255,0);
+    width: 100%;
+}
+
+.catwithfocus{
+    width: 100%;
+}
+
+.catwnotfocused{
+    background: rgba(255,255,255,0);
+    border: rgba(255,255,255,0);
+    width: 40px;
+}
+
+.catwwithfocus{
+    width: 40px;
+}
+
+.helpbutton{
+    float: right;
 }
