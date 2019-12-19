@@ -80,6 +80,8 @@ define([
             levels: [], // First level is course level, last level is item level, between
             //this two levels are category levels
             course: {fullname: 'Nombre completo de el curso'},
+            maxDisplayGrade: 5, //Used as a scale for the graphs
+            gradeDisplayRange: 0.5, //Used to divide the scale in the line graph
         },
 
         mutations: {
@@ -375,6 +377,9 @@ define([
             studentsCount: (state) => {
                 return Object.keys(state.students).length;
             },
+            studentsAsesCount: (state, getters) => {
+                return getters.studentSet.filter(student => student.is_ases).length;
+            },
             itemSet: (state) => {
                 return Object.values(state.items);
             },
@@ -392,6 +397,20 @@ define([
                     return Object.keys(state.items);
                 }
                 return itemLevel.map(element => element.object.id);
+            },
+            itemOrderedNames: (state, getters) => {
+                let itemLevel = getters.itemLevel; //see itemLevel function in getters
+                if(!itemLevel) {
+                    return Object.keys(state.items);
+                }
+                return itemLevel.map(element => {
+                    if(element.object.itemname === null || element.object.itemname === ''){
+                        return 'Total ' + getters.categoryById(element.object.iteminstance).fullname;
+                    }else return element.object.itemname;
+                });
+            },
+            finalGradeId: (state, getters) => {
+                return getters.itemOrderIds[getters.itemOrderIds.length - 1];
             },
             categoryChildItems: (state, getters) => (idCategory) => {
                 let children =  getters.itemSet.filter(item => {
@@ -425,6 +444,84 @@ define([
             },
             getCategoriesByDepth: (state) => (depth) => {
                 return state.categories.find(category=>category.depth === depth);
+            },
+            gradesSet: (state) => {
+                return Object.values(state.grades);
+            },
+            gradesByItemId: (state, getters) => (id) => {
+                return getters.gradesSet.filter(grade => grade.itemid === id);
+            },
+            passingGrades: (state, getters) => {
+                return getters.gradesSet.filter(grade => grade.finalgrade >= grade.rawgrademax*0.6);
+            },
+            passingGradesSet: (state, getters) => {
+                return getters.itemOrderIds.map(id => {
+                    return getters.gradesByItemId(id).filter(grade => grade.finalgrade >= grade.rawgrademax*0.6).length;
+                });
+            },
+            failingGrades: (state, getters) => {
+                return getters.gradesSet.filter(grade => grade.finalgrade < grade.rawgrademax*0.6 && grade.finalgrade != null);
+            },
+            failingGradesSet: (state, getters) => {
+                return getters.itemOrderIds.map(id => {
+                    return getters.gradesByItemId(id).filter(grade => {
+                        if(grade.finalgrade < grade.rawgrademax*0.6 && grade.finalgrade != null){
+                            return true;
+                        }else return false
+                    }).length;
+                });
+            },
+            nullGrades: (state, getters) => {
+                return getters.gradesSet.filter(grade => grade.finalgrade === null || grade.finalgrade === undefined);
+            },
+            nullGradesSet: (state, getters) => {
+                return getters.itemOrderIds.map(id => {
+                    return getters.gradesByItemId(id).filter(grade => grade.finalgrade === null || grade.finalgrade === undefined).length;
+                });
+            },
+            passingGradesCount: (state, getters) => {
+                return getters.passingGrades.length;
+            },
+            failingGradesCount: (state, getters) => {
+                return getters.failingGrades.length;
+            },
+            nullGradesCount: (state, getters) => {
+                return getters.nullGrades.length;
+            },
+            finalGradesSet: (state, getters) => {
+                return getters.gradesSet.filter(grade => grade.itemid === getters.finalGradeId);
+            },
+            finalPassingGradeSet: (state, getters) => {
+                return getters.finalGradesSet.filter(grade => grade.finalgrade >= grade.rawgrademax*0.6);
+            },
+            lineGraphLabel: (state) => {
+                let label = [];
+                let number = state.maxDisplayGrade/state.gradeDisplayRange;
+                let left = 0;
+                let range = '';
+                for(i = 0; i < number - 1; i++){
+                    range = left + " - ";
+                    left += state.gradeDisplayRange;
+                    range += left - 0.1;
+                    label.push(range);
+                }
+                range = left + " - " + state.maxDisplayGrade;
+                label.push(range);
+                return label;
+            },
+            getGradesByRange: (state, getters) => {
+                let lastMax = 0;
+                let currentMax = state.gradeDisplayRange;
+                let data = [];
+                let number = state.maxDisplayGrade/state.gradeDisplayRange;
+                let weightedGrades = getters.finalGradesSet.map(grade => (grade.finalgrade/grade.rawgrademax)*state.maxDisplayGrade);
+                for(i = 0; i < number - 1; i++){
+                    data.push(weightedGrades.filter(grade => grade >= lastMax && grade < currentMax).length);
+                    lastMax += state.gradeDisplayRange;
+                    currentMax += state.gradeDisplayRange;
+                }
+                data.push(weightedGrades.filter(grade => grade >= lastMax).length);
+                return data;
             }
         }
     };

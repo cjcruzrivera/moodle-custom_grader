@@ -102,7 +102,8 @@ define([
     'local_customgrader/grader-router',
     'local_customgrader/grader-filters',
     'local_customgrader/grader-constants',
-    'local_customgrader/grader-graphs'
+    'local_customgrader/Chart',
+    'local_customgrader/vue-chartjs',
     ], function (
         Vue,
         VueRouter,
@@ -120,7 +121,8 @@ define([
         g_router,
         g_filters,
         g_const,
-        g_graph){
+        g_chartjs,
+        g_vuechartjs,){
     Vue.use(VueRouter);
     Vue.use(Vuex);
     Vue.use(VueResource);
@@ -1057,7 +1059,7 @@ define([
                     return this.categoryById(this.item.iteminstance);
                 },
                 itemName: function() {
-                    return 'TOTAL ' + this.categoryParent.fullname ;
+                    return 'TOTAL ' + this.categoryParent.fullname;
                 }
             },
         });
@@ -1213,8 +1215,24 @@ define([
             );
 
 
-        // language=HTML
-        var Grader = Vue.component(g_c_main.name, g_c_main.component);
+
+
+       /* var Bar = Vue.component('VBar', {
+            mixins: [g_chartjs.Bar, g_vuechartjs.Bar],
+            props: {
+                chartdata: {
+                    type: Object,
+                    default: null
+                },
+                options: {
+                    type: Object,
+                    default: null
+                }
+            },
+            mounted () {
+                this.renderChart(this.chartdata, this.options)
+            }
+        });*/
 
     var Home = Vue.component('home', {
         template: '<div>hola</div>',
@@ -1244,7 +1262,6 @@ define([
          router: router,
          components: {
              ThCourse,
-             Grader,
              EditCategoryForm,
              Home,
              ThCategory,
@@ -1252,16 +1269,12 @@ define([
              ThItemManualAndMod
          }
      });
-
-
-
-
     return {
         init: function() {
+
             app.$mount('#app');
 
             $(document).ready(function() {
-
             });
         }
     };
