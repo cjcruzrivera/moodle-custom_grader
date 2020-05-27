@@ -86,24 +86,24 @@ type Grade = {
 //     o[privateName] = 'bar';
 
 define([
-    'local_customgrader/vendor-vue',
-    'local_customgrader/vendor-vue-router',
-    'local_customgrader/vendor-vuex',
-    'local_customgrader/vendor-vue-resource',
-    'local_customgrader/vendor-vue-js-modal',
-    'local_customgrader/vendor-vue-flex',
-    'local_customgrader/vendor-vue-toasted',
-    'local_customgrader/vendor-loading-indicator',
-    'local_customgrader/vendor-lodash',
-    'local_customgrader/grader-store',
-    'local_customgrader/grader-enums',
-    'local_customgrader/grader-utils',
-    'local_customgrader/grader-component-main',
-    'local_customgrader/grader-router',
-    'local_customgrader/grader-filters',
-    'local_customgrader/grader-constants',
-    'local_customgrader/Chart',
-    'local_customgrader/vue-chartjs',
+        'local_customgrader/vendor-vue',
+        'local_customgrader/vendor-vue-router',
+        'local_customgrader/vendor-vuex',
+        'local_customgrader/vendor-vue-resource',
+        'local_customgrader/vendor-vue-js-modal',
+        'local_customgrader/vendor-vue-flex',
+        'local_customgrader/vendor-vue-toasted',
+        'local_customgrader/vendor-loading-indicator',
+        'local_customgrader/vendor-lodash',
+        'local_customgrader/grader-store',
+        'local_customgrader/grader-enums',
+        'local_customgrader/grader-utils',
+        'local_customgrader/grader-component-main',
+        'local_customgrader/grader-router',
+        'local_customgrader/grader-filters',
+        'local_customgrader/grader-constants',
+        'local_customgrader/Chart',
+        'local_customgrader/vue-chartjs',
     ], function (
         Vue,
         VueRouter,
@@ -675,12 +675,11 @@ define([
             @mouseout="showMenu = false" 
             v-bind:colspan="childSize" >
                 <flex-row align-v="center"  v-bind:style="editZoneStyles">
-                    <input v-model="catName" :class="getCatClass" @focus="catFocus" @blur="catBlur" @keydown.enter="updateCategoryName" @keyup.enter="$event.target.blur()"></input>
+                    <input v-model="catName" :class="getCatClass" @focus="catFocus" @blur="catBlur" @keyup.enter="$event.target.blur()"></input>
                     <input
                      v-model="catWeight" 
                      :class="catGetWeightClass"
                      @focus="catWFocus" @blur="catWBlur"
-                     @keydown.enter="saveAggregationCoef" 
                      @keyup.enter="$event.target.blur()"
                      v-if="parentCategory.aggregation == weightedAggregation"
                      ></input>
@@ -748,7 +747,7 @@ define([
                 //this.length = 19;
                 this.getCatClass = 'catnotfocused';
                 this.showFullName = false;
-                this.uptadeCatName();
+                this.updateCategoryName();
             },
             catWFocus: function (){
                 this.catGetWeightClass = 'catwwithfocus';
@@ -758,7 +757,7 @@ define([
             catWBlur: function (){
                 this.catGetWeightClass = 'catwnotfocused';
                 this.showFullName = false;
-                this.updateWeight();
+                this.saveAggregationCoef();
             },
             updateCategoryName: function () {
              this.$store.dispatch(
@@ -766,10 +765,9 @@ define([
                  {...this.category, fullname: this.catName})
            },
             saveAggregationCoef: function() {
-                if(this.catWeight !== this.aggregationCoef) {
                     this.$store.dispatch(g_store.actions.UPDATE_ITEM,
                         {...this.categoryGradeItem, aggregationcoef: this.catWeight})
-                }
+
             },
             uptadeCatName: function(){
                 if(this.showFullName){
@@ -909,7 +907,6 @@ define([
                      v-model="weight" 
                      :class="getWeightClass"
                      @focus="wfocus" @blur="wblur"
-                     @keydown.enter="saveAggregationCoefChanges" 
                      @keyup.enter="$event.target.blur()"
                      v-if="parentCategory.aggregation == weightedAggregation"
                      ></input>
@@ -933,7 +930,7 @@ define([
                     getClass: 'inotfocused',
                     getWeightClass: 'iwnotfocused',
                     content: "",
-                    weight: "",
+                    weight: 0,
                     //length: 19,
                     editZoneStyles: {
                         /*display: 'grid',
@@ -952,41 +949,49 @@ define([
                     this.uptadeContent();
                 },
                 blur: function (){
-                    //this.length = 19;
                     this.getClass = 'inotfocused';
                     this.showFullName = false;
-                    this.uptadeContent();
+                    if (this.content !== this.item.itemname) {
+                        this.saveNameChanges()
+                    }else{
+                        this.uptadeContent();
+                    }
                 },
                 wfocus: function (){
                     this.getWeightClass = 'iwwithfocus';
-                    this.showFullName = true;
                     this.updateWeight();
                 },
                 wblur: function (){
                     this.getWeightClass = 'iwnotfocused';
-                    this.showFullName = false;
-                    this.updateWeight();
+                    if (parseFloat(this.weight) !== parseFloat(this.item.aggregationcoef)){
+                        console.log('nel');
+                        this.saveAggregationCoefChanges();
+                    }else {
+                        this.updateWeight();
+                    }
                 },
                 ...Vuex.mapActions({
                     deleteItem: g_store.actions.DELETE_ITEM
                 }),
-                saveNameChanges: function () {
-                    if (this.content !== this.item.itemname) {
-                        this.$store.dispatch(
+                saveNameChanges:function () {
+
+                    this.$store.dispatch(
+                        g_store.actions.UPDATE_ITEM,
+                        {...this.item, itemname: this.content}
+                    );
+/*                        this.$store.dispatch(
                             g_store.actions.UPDATE_ITEM,
                             {...this.item, itemname: this.content}
-                        );
-                    }
+                        );*/
                 },
                 saveAggregationCoefChanges: function() {
-                    if (this.weight !== this.item.aggregationcoef) {
-                        this.$store.dispatch(
-                            g_store.actions.UPDATE_ITEM,
-                            {...this.item, aggregationcoef: this.weight}
-                        );
-                    }
+                    this.$store.dispatch(
+                        g_store.actions.UPDATE_ITEM,
+                        {...this.item, aggregationcoef: this.weight}
+                    )
                 },
                 uptadeContent: function(){
+                    console.log('update');
                     if(this.showFullName){
                         this.content = this.item.itemname;
                     }else{
@@ -1000,6 +1005,7 @@ define([
                     }
                 },
                 updateWeight: function(){
+                    console.log(this.item.aggregationcoef);
                     this.weight = this.$options.filters.round(this.item.aggregationcoef, 2);
                     if(this.getWeightClass === 'iwnotfocused'){
                         this.weight += '%';
@@ -1234,22 +1240,6 @@ define([
             }
         });*/
 
-    var Home = Vue.component('home', {
-        template: '<div>hola</div>',
-        computed: {
-            username() {
-                // We will see what `params` is shortly
-                return this.$route.params.username
-            }
-        },
-        methods: {
-            goBack () {
-                window.history.length > 1
-                    ? this.$router.go(-1)
-                    : this.$router.push('/')
-            }
-        }
-    });
     /** Filter registry */
         Vue.filter (g_filters.round.name, g_filters.round.func);
         Vue.filter (g_filters.trun.name, g_filters.trun.func);
@@ -1263,7 +1253,6 @@ define([
          components: {
              ThCourse,
              EditCategoryForm,
-             Home,
              ThCategory,
              TrItems,
              ThItemManualAndMod
