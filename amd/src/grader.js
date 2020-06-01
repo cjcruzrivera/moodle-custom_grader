@@ -120,9 +120,7 @@ define([
         g_c_main,
         g_router,
         g_filters,
-        g_const,
-        g_chartjs,
-        g_vuechartjs,){
+        g_const){
     Vue.use(VueRouter);
     Vue.use(Vuex);
     Vue.use(VueResource);
