@@ -30,7 +30,6 @@ define([
                         <!-- END OF CATEGORIES_TRS-->
                         <tr-items>  </tr-items>
                         <tr-grades 
-                        v-if="student.is_ases"
                         v-for="(student, index) in students" 
                         v-bind:studentId="student.id" 
                         v-bind:studentIndex="index" 
