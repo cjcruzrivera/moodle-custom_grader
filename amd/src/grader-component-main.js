@@ -33,7 +33,6 @@ define([
                         v-for="(student, index) in students" 
                         v-bind:studentId="student.id" 
                         v-bind:studentIndex="index" 
-                        :key="student.id"
                         ></tr-grades>
                     </tbody>
                 </table>
