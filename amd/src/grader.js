@@ -1108,7 +1108,7 @@ define([
             });
         var TdGrade = Vue.component('td-grade',
             {
-               template: `
+                template: `
                 <td  class="td-grade"
                 v-bind:style="this.inputDisabled? { 'background-color': '#e1e4fe' } : { }"> 
                 <!--{{item.itemtype}}-->
@@ -1121,6 +1121,7 @@ define([
                 v-bind:max="grade.rawgrademax" 
                 v-bind:min="grade.rawgrademin" 
                 v-bind:size="decimalPlaces + 1"
+                v-on:keypress="isNumber($event)"
                 v-model.lazy="finalGrade">
                 </td>
                 `,
@@ -1128,7 +1129,16 @@ define([
                 methods: {
                     ...Vuex.mapActions({
                         updateGrade: g_store.actions.UPDATE_GRADE
-                })
+                    }),
+                    isNumber: function(evt) {
+                        evt = (evt) ? evt : window.event;
+                        var charCode = (evt.which) ? evt.which : evt.keyCode;
+                        if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                            evt.preventDefault();
+                        } else {
+                            return true;
+                        }
+                    }
                 },
                 computed: {
 
@@ -1145,7 +1155,7 @@ define([
                         'studentsCount'
                     ]),
                     tabIndex: function() {
-                      return (this.itemIndex + 1) * this.studentsCount +  this.studentIndex + 1;
+                        return (this.itemIndex + 1) * this.studentsCount +  this.studentIndex + 1;
                     },
                     inputDisabled: function () {
 
@@ -1155,13 +1165,15 @@ define([
                         return this.grades[this.gradeId];
                     },
                     item: function () {
-                      return this.items[this.grade.itemid];
+                        return this.items[this.grade.itemid];
                     },
                     finalGrade: {
                         get() {
-                           return g_utils.round(this.grade.finalgrade, this.decimalPlaces);
+                            console.log("getFInal");
+                            return g_utils.round(this.grade.finalgrade, this.decimalPlaces);
                         },
                         set(value) {
+                            console.log("setFinal");
                             this.grade.finalgrade = value;
                             this.updateGrade(this.grade, this.course.id);
                         }
