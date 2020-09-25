@@ -104,7 +104,7 @@ class custom_grade_report_grader extends grade_report_grader {
                              FROM {role_assignments} ra
                             WHERE ra.roleid IN ($this->gradebookroles)
                               AND ra.contextid $relatedctxsql
-                       ) rainner ON rainner.userid = u.id
+                           ) rainner ON rainner.userid = u.id
                    AND u.deleted = 0
                    $this->userwheresql
                    $this->groupwheresql
