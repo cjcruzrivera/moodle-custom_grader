@@ -102,8 +102,8 @@ define([
         'local_customgrader/grader-router',
         'local_customgrader/grader-filters',
         'local_customgrader/grader-constants',
-        'local_customgrader/Chart',
-        'local_customgrader/vue-chartjs',
+        //'local_customgrader/Chart',
+        //'local_customgrader/vue-chartjs',
     ], function (
         Vue,
         VueRouter,
