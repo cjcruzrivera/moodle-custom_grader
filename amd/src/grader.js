@@ -86,24 +86,24 @@ type Grade = {
 //     o[privateName] = 'bar';
 
 define([
-        'local_customgrader/vendor-vue',
-        'local_customgrader/vendor-vue-router',
-        'local_customgrader/vendor-vuex',
-        'local_customgrader/vendor-vue-resource',
-        'local_customgrader/vendor-vue-js-modal',
-        'local_customgrader/vendor-vue-flex',
-        'local_customgrader/vendor-vue-toasted',
-        'local_customgrader/vendor-loading-indicator',
-        'local_customgrader/vendor-lodash',
-        'local_customgrader/grader-store',
-        'local_customgrader/grader-enums',
-        'local_customgrader/grader-utils',
-        'local_customgrader/grader-component-main',
-        'local_customgrader/grader-router',
-        'local_customgrader/grader-filters',
-        'local_customgrader/grader-constants',
-        //'local_customgrader/Chart',
-        //'local_customgrader/vue-chartjs',
+    'local_customgrader/vendor-vue',
+    'local_customgrader/vendor-vue-router',
+    'local_customgrader/vendor-vuex',
+    'local_customgrader/vendor-vue-resource',
+    'local_customgrader/vendor-vue-js-modal',
+    'local_customgrader/vendor-vue-flex',
+    'local_customgrader/vendor-vue-toasted',
+    'local_customgrader/vendor-loading-indicator',
+    'local_customgrader/vendor-lodash',
+    'local_customgrader/grader-store',
+    'local_customgrader/grader-enums',
+    'local_customgrader/grader-utils',
+    'local_customgrader/grader-component-main',
+    'local_customgrader/grader-router',
+    'local_customgrader/grader-filters',
+    'local_customgrader/grader-constants',
+    'local_customgrader/Chart',
+    'local_customgrader/vue-chartjs',
     ], function (
         Vue,
         VueRouter,
@@ -120,7 +120,9 @@ define([
         g_c_main,
         g_router,
         g_filters,
-        g_const){
+        g_const,
+        g_chartjs,
+        g_vuechartjs,){
     Vue.use(VueRouter);
     Vue.use(Vuex);
     Vue.use(VueResource);
