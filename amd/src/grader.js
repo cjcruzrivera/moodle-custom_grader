@@ -86,68 +86,68 @@ type Grade = {
 //     o[privateName] = 'bar';
 
 define([
-    'local_customgrader/vendor-vue',
-    'local_customgrader/vendor-vue-router',
-    'local_customgrader/vendor-vuex',
-    'local_customgrader/vendor-vue-resource',
-    'local_customgrader/vendor-vue-js-modal',
-    'local_customgrader/vendor-vue-flex',
-    'local_customgrader/vendor-vue-toasted',
-    'local_customgrader/vendor-loading-indicator',
-    'local_customgrader/vendor-lodash',
-    'local_customgrader/grader-store',
-    'local_customgrader/grader-enums',
-    'local_customgrader/grader-utils',
-    'local_customgrader/grader-component-main',
-    'local_customgrader/grader-router',
-    'local_customgrader/grader-filters',
-    'local_customgrader/grader-constants',
-    'local_customgrader/Chart',
-    'local_customgrader/vue-chartjs',
+        'local_customgrader/vendor-vue',
+        'local_customgrader/vendor-vue-router',
+        'local_customgrader/vendor-vuex',
+        'local_customgrader/vendor-vue-resource',
+        'local_customgrader/vendor-vue-js-modal',
+        'local_customgrader/vendor-vue-flex',
+        'local_customgrader/vendor-vue-toasted',
+        'local_customgrader/vendor-loading-indicator',
+        'local_customgrader/vendor-lodash',
+        'local_customgrader/grader-store',
+        'local_customgrader/grader-enums',
+        'local_customgrader/grader-utils',
+        'local_customgrader/grader-component-main',
+        'local_customgrader/grader-router',
+        'local_customgrader/grader-filters',
+        'local_customgrader/grader-constants',
+        'local_customgrader/Chart',
+        'local_customgrader/vue-chartjs',
     ], function (
-        Vue,
-        VueRouter,
-        Vuex,
-        VueResource,
-        VModal,
-        VueFlex,
-        VueToasted,
-        loading_indicator,
-        _,
-        g_store,
-        g_enums,
-        g_utils,
-        g_c_main,
-        g_router,
-        g_filters,
-        g_const,
-        g_chartjs,
-        g_vuechartjs,){
-    Vue.use(VueRouter);
-    Vue.use(Vuex);
-    Vue.use(VueResource);
-    Vue.use(VModal.default, { dialog: true });
-    Vue.use(VueFlex);
-    Vue.use(VueToasted.default, {iconPack: 'custom-class'});
-    var graderVueEvents = {
-        UPDATE_CATEGORY_OK: 'updateCategoryOK',
-        ADD_ELEMENT_OK: 'addElementOK'
-    };
+    Vue,
+    VueRouter,
+    Vuex,
+    VueResource,
+    VModal,
+    VueFlex,
+    VueToasted,
+    loading_indicator,
+    _,
+    g_store,
+    g_enums,
+    g_utils,
+    g_c_main,
+    g_router,
+    g_filters,
+    g_const,
+    g_chartjs,
+    g_vuechartjs,){
+        Vue.use(VueRouter);
+        Vue.use(Vuex);
+        Vue.use(VueResource);
+        Vue.use(VModal.default, { dialog: true });
+        Vue.use(VueFlex);
+        Vue.use(VueToasted.default, {iconPack: 'custom-class'});
+        var graderVueEvents = {
+            UPDATE_CATEGORY_OK: 'updateCategoryOK',
+            ADD_ELEMENT_OK: 'addElementOK'
+        };
 
-    var modalsEnum = {
-        EDIT_CATEGORY : 'edit-category',
-        EDIT_ITEM : 'edit-item',
-        ADD_ELEMENT: 'add-element'
-    };
+        var modalsEnum = {
+            EDIT_CATEGORY : 'edit-category',
+            EDIT_ITEM : 'edit-item',
+            ADD_ELEMENT: 'add-element'
+        };
 
-    const categoryElement = { name: 'CATEGORÍA', id: 0 };
-    const itemElement = { name: 'ÍTEM', id: 1 };
-    const partialExamElement = { name: 'PARCIAL', id: 2 };
-    const elementTypes = [categoryElement, itemElement, partialExamElement];
+        const categoryElement = { name: 'CATEGORÍA', id: 0 };
+        const itemElement = { name: 'ÍTEM', id: 1 };
+        const partialExamElement = { name: 'PARCIAL', id: 2 };
+        const elementTypes = [categoryElement, itemElement, partialExamElement];
 
-    var store = new Vuex.Store(g_store.store);
-    var SelectAggregation = Vue.component('select-aggregation', {
-        template: `
+        var store = new Vuex.Store(g_store.store);
+        var SelectAggregation = Vue.component('select-aggregation', {
+            template: `
             <select 
             v-model="aggregation" 
             @change="changeAggregation($event)" 
@@ -159,25 +159,25 @@ define([
                 >{{_aggregation.name}}</option>
             </select>
         `,
-        props: ['initialAggregation'],
-        data: function () {
-            return {
-                aggregation: g_enums.aggregations.SIMPLE,
-                aggregations: g_const.aggregations
+            props: ['initialAggregation'],
+            data: function () {
+                return {
+                    aggregation: g_enums.aggregations.SIMPLE,
+                    aggregations: g_const.aggregations
+                }
+            },
+            created: function () {
+                this.aggregation = this.initialAggregation? this.initialAggregation: this.aggregation;
+            },
+            methods: {
+                changeAggregation($event) {
+                    this.$emit('changeAggregation', $event.target.value);
+                }
             }
-        },
-        created: function () {
-            this.aggregation = this.initialAggregation? this.initialAggregation: this.aggregation;
-        },
-        methods: {
-            changeAggregation($event) {
-                this.$emit('changeAggregation', $event.target.value);
-            }
-        }
-    });
-    var EditCategoryForm = Vue.component('edit-category-form', {
-            // language=HTML
-            template: `    
+        });
+        var EditCategoryForm = Vue.component('edit-category-form', {
+                // language=HTML
+                template: `    
                 <div style="width: 600px; height: 300px;" class="edit-category-form">
                     <form style="width: 570px; height: 270px;">
                         <h3 :style="{ 'text-align': 'center' }">Editando Categoría:</h3>
@@ -202,79 +202,79 @@ define([
                     </form>
                 </div>
             `
-        ,
-        data: function() {
-                return {
-                    categoryFullName: '',
-                    gradeTypeId: 0,
-                    aggregations: g_const.aggregations,
-                    boton: {
-                        'background-color': '#cd1f32',
-                        'color': 'white'
+                ,
+                data: function() {
+                    return {
+                        categoryFullName: '',
+                        gradeTypeId: 0,
+                        aggregations: g_const.aggregations,
+                        boton: {
+                            'background-color': '#cd1f32',
+                            'color': 'white'
+                        }
+                    }
+                },
+                computed: {
+                    ...Vuex.mapState(['selectedCategoryId']),
+                    ...Vuex.mapGetters({
+                        category: 'selectedCategory'
+                    }),
+                    isCourseCategory: function () {
+                        return this.category.depth == 1;
+                    }
+                },
+                mounted: function () {
+                    this.categoryFullName = this.category.fullname;
+
+                    this.aggregation = this.category.aggregation;
+                },
+                methods: {
+                    setAggretation(aggregation) {
+                        this.aggregation = aggregation;
+                    },
+                    changeAggregation(aggregation) {
+                        this.aggregation = aggregation;
+                    },
+                    updateCategory() {
+                        this.$store.dispatch(
+                            g_store.actions.UPDATE_CATEGORY,
+                            {
+                                ...this.category,
+                                fullname: this.categoryFullName,
+                                aggregation: this.aggregation,
+                                aggregationcoef: 50
+                            })
+                            .then(()=> {
+                                this.$emit(graderVueEvents.UPDATE_CATEGORY_OK);
+                            })
+                            .catch( ()=> {
+                                this.$toasted.show('Ha habido un error guardando la categoria', {duration: 3000, theme:'bubble'});
+                            });
                     }
                 }
-        },
-        computed: {
-            ...Vuex.mapState(['selectedCategoryId']),
-            ...Vuex.mapGetters({
-                category: 'selectedCategory'
-            }),
-            isCourseCategory: function () {
-                return this.category.depth == 1;
             }
-        },
-        mounted: function () {
-          this.categoryFullName = this.category.fullname;
-
-          this.aggregation = this.category.aggregation;
-        },
-        methods: {
-                setAggretation(aggregation) {
-                  this.aggregation = aggregation;
-                },
-                changeAggregation(aggregation) {
-                    this.aggregation = aggregation;
-                },
-                updateCategory() {
-                    this.$store.dispatch(
-                        g_store.actions.UPDATE_CATEGORY,
-                        {
-                            ...this.category,
-                            fullname: this.categoryFullName,
-                            aggregation: this.aggregation,
-                            aggregationcoef: 50
-                        })
-                        .then(()=> {
-                            this.$emit(graderVueEvents.UPDATE_CATEGORY_OK);
-                        })
-                        .catch( ()=> {
-                            this.$toasted.show('Ha habido un error guardando la categoria', {duration: 3000, theme:'bubble'});
-                        });
-                }
-        }
-        }
         );
-    var CloseModalButton = Vue.component('close-modal-button', {
-        template: `
+        var CloseModalButton = Vue.component('close-modal-button', {
+            template: `
         <i class="fa fa-2x fa-times-circle" v-bind:style="closeButtonStyle"  @click="$modal.hide(modalName)"></i>
         `,
-        props: {
-            modalName: {
-                type: String,
-                required: true
-            }
-        },
-        data: function() {
-            return {
-                closeButtonStyle: {
-                    position: "absolute",
-                    top: "10px",
-                    right: "10px"
+            props: {
+                modalName: {
+                    type: String,
+                    required: true
+                }
+            },
+            data: function() {
+                return {
+                    closeButtonStyle: {
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px"
+                    }
                 }
             }
-        }
-    });
-    var ModalAddElement = Vue.component('modal-add-element', {
+        });
+        var ModalAddElement = Vue.component('modal-add-element', {
             template: `
        <modal 
         v-bind:name="modalName"
@@ -285,14 +285,14 @@ define([
             <close-modal-button v-bind:modalName="modalName"></close-modal-button>
        </modal>
        `,
-        data: function() {
+            data: function() {
                 return {
                     modalName: modalsEnum.ADD_ELEMENT
                 }
-        }
+            }
         });
-    var ModalEditCategory = Vue.component('modal-edit-category',{
-       template: `<modal
+        var ModalEditCategory = Vue.component('modal-edit-category',{
+            template: `<modal
                     v-bind:name="modalName" 
                     v-bind:transition="'nice-modal-fade'"
                     :draggable="true"
@@ -301,15 +301,15 @@ define([
                         <close-modal-button v-bind:modalName="modalName"></close-modal-button>
                    </modal>
        `,
-        data: function () {
-           return {
-               modalName: modalsEnum.EDIT_CATEGORY
-           }
-        }
-    });
+            data: function () {
+                return {
+                    modalName: modalsEnum.EDIT_CATEGORY
+                }
+            }
+        });
 
-    var AddElementForm = Vue.component('add-element-form',{
-       template: `
+        var AddElementForm = Vue.component('add-element-form',{
+            template: `
         <div class="add-element-form">
            <form>
            <h2 :style="{ 'text-align': 'center' }">Añadir elemento</h2>
@@ -351,256 +351,256 @@ define([
            </form>
        </div>
        `,
-        data : function () {
-           return {
-               boton: {
-                   'background-color': '#cd1f32',
-                   'color': 'white'
-               },
-               elementTypes: elementTypes,
-               categoryElementTypeId: categoryElement.id,
-               partialExamElementId: partialExamElement.id,
-               elementTypeId: itemElement.id,
-               elementName: '',
-               aggregation: g_enums.aggregations.SIMPLE,
-               elementAggregationCoef: ''
-           }
-        },
-        computed: {
-            ...Vuex.mapState(['selectedCategoryId', 'course']),
-            ...Vuex.mapGetters(['selectedCategory']),
-            parentCategory: function () {
-                return this.selectedCategory;
-            },
-            weigthedMeanOfGrades: function () {
-                return g_enums.aggregations.PROMEDIO;
-            }
-        },
-        methods: {
-            isNumber: function(evt) {
-                evt = (evt) ? evt : window.event;
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-                    evt.preventDefault();
-                } else {
-                    return true;
+            data : function () {
+                return {
+                    boton: {
+                        'background-color': '#cd1f32',
+                        'color': 'white'
+                    },
+                    elementTypes: elementTypes,
+                    categoryElementTypeId: categoryElement.id,
+                    partialExamElementId: partialExamElement.id,
+                    elementTypeId: itemElement.id,
+                    elementName: '',
+                    aggregation: g_enums.aggregations.SIMPLE,
+                    elementAggregationCoef: ''
                 }
             },
-           changeAggregation(aggregation) {
-             this.aggregation = aggregation;
-           },
-            extractItem() {
-               return {
-                   itemname: this.elementName,
-                   aggregationcoef: this.elementAggregationCoef,
-                   parent_category: this.parentCategory.id,
-                   courseid: this.course.id,
-               };
+            computed: {
+                ...Vuex.mapState(['selectedCategoryId', 'course']),
+                ...Vuex.mapGetters(['selectedCategory']),
+                parentCategory: function () {
+                    return this.selectedCategory;
+                },
+                weigthedMeanOfGrades: function () {
+                    return g_enums.aggregations.PROMEDIO;
+                }
             },
-            extractPartialExam() {
-                return {
-                    itemname: this.elementName,
-                    aggregationcoef: this.elementAggregationCoef,
-                    parent_category: this.parentCategory.id,
-                    courseid: this.course.id,
-                    aggregation: this.aggregation
-                };
-            },
-            extractCategory() {
-              return {
-                fullname: this.elementName,
-                courseid: this.course.id,
-                parent_category: this.parentCategory.id,
-                aggregation: this.aggregation
-              };
-            },
-            createItem() {
-                const item = this.extractItem();
-                this.$store.dispatch(g_store.actions.ADD_ITEM, item)
-                    .then(()=> {
-                        this.$emit(graderVueEvents.ADD_ELEMENT_OK);
-                        this.$toasted.show(
-                            `Se ha añadido el item '${item.itemname}'`,
-                            { duration : 3000, icon: 'fa fa-check'});
-                        this.$router.go();
-                    })
-                    .catch(() => {
-                        this.$toasted.show(
-                            'Ha ocurrido un error guardando el nuevo item.',
-                            {duration: 3000, theme: 'bubble'}
-                        )
-                    })
-            },
-            /* examen parcial */
-            createCoursePartialExam() {
-                const partialExam = this.extractPartialExam();
-                this.$store.dispatch(g_store.actions.ADD_PARTIAL_EXAM,  partialExam)
-                    .then(()=> {
-                        this.$emit(graderVueEvents.ADD_ELEMENT_OK);
-                        this.$toasted.show(
-                            `Se ha añadido el parcial '${partialExam.itemname}'`,
-                            { duration : 3000, icon: 'fa fa-check'});
-                        this.$router.go();
-                    })
-                    .catch(() => {
-                        this.$toasted.show(
-                            'Ha ocurrido un error guardando el nuevo parcial.',
-                            {duration: 3000, theme: 'bubble'}
-                        )
-                    })
-            },
-            createCategory() {
-              const category = this.extractCategory();
-              const payload = {category, weight: this.elementAggregationCoef};
-              this.$store.dispatch(g_store.actions.ADD_CATEGORY, payload)
-                  .then(()=>{
-                      this.$emit(graderVueEvents.ADD_ELEMENT_OK);
-                      this.$toasted.show(
-                          `Se ha añadido la categoria '${category.fullname}'`,
-                          { duration : 3000, icon: 'fa fa-check'});
-                      this.$router.go();
-                  })
-                  .catch(() => {
-                      this.$toasted.show(
-                          'Ha ocurrido un error guardando la nueva categoria.',
-                          {duration: 3000, theme: 'bubble'}
-                      )
-                  })
-            },
-           createElement() {
-               if (this.elementTypeId === itemElement.id) {
-                    this.createItem();
-               } else if(this.elementTypeId === categoryElement.id) {
-                   this.createCategory();
-               } else if(this.elementTypeId === partialExamElement.id) {
-                   this.createCoursePartialExam();
-               }
-           }
-        }
+            methods: {
+                isNumber: function(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                        evt.preventDefault();
+                    } else {
+                        return true;
+                    }
+                },
+                changeAggregation(aggregation) {
+                    this.aggregation = aggregation;
+                },
+                extractItem() {
+                    return {
+                        itemname: this.elementName,
+                        aggregationcoef: this.elementAggregationCoef,
+                        parent_category: this.parentCategory.id,
+                        courseid: this.course.id,
+                    };
+                },
+                extractPartialExam() {
+                    return {
+                        itemname: this.elementName,
+                        aggregationcoef: this.elementAggregationCoef,
+                        parent_category: this.parentCategory.id,
+                        courseid: this.course.id,
+                        aggregation: this.aggregation
+                    };
+                },
+                extractCategory() {
+                    return {
+                        fullname: this.elementName,
+                        courseid: this.course.id,
+                        parent_category: this.parentCategory.id,
+                        aggregation: this.aggregation
+                    };
+                },
+                createItem() {
+                    const item = this.extractItem();
+                    this.$store.dispatch(g_store.actions.ADD_ITEM, item)
+                        .then(()=> {
+                            this.$emit(graderVueEvents.ADD_ELEMENT_OK);
+                            this.$toasted.show(
+                                `Se ha añadido el item '${item.itemname}'`,
+                                { duration : 3000, icon: 'fa fa-check'});
+                            this.$router.go();
+                        })
+                        .catch(() => {
+                            this.$toasted.show(
+                                'Ha ocurrido un error guardando el nuevo item.',
+                                {duration: 3000, theme: 'bubble'}
+                            )
+                        })
+                },
+                /* examen parcial */
+                createCoursePartialExam() {
+                    const partialExam = this.extractPartialExam();
+                    this.$store.dispatch(g_store.actions.ADD_PARTIAL_EXAM,  partialExam)
+                        .then(()=> {
+                            this.$emit(graderVueEvents.ADD_ELEMENT_OK);
+                            this.$toasted.show(
+                                `Se ha añadido el parcial '${partialExam.itemname}'`,
+                                { duration : 3000, icon: 'fa fa-check'});
+                            this.$router.go();
+                        })
+                        .catch(() => {
+                            this.$toasted.show(
+                                'Ha ocurrido un error guardando el nuevo parcial.',
+                                {duration: 3000, theme: 'bubble'}
+                            )
+                        })
+                },
+                createCategory() {
+                    const category = this.extractCategory();
+                    const payload = {category, weight: this.elementAggregationCoef};
+                    this.$store.dispatch(g_store.actions.ADD_CATEGORY, payload)
+                        .then(()=>{
+                            this.$emit(graderVueEvents.ADD_ELEMENT_OK);
+                            this.$toasted.show(
+                                `Se ha añadido la categoria '${category.fullname}'`,
+                                { duration : 3000, icon: 'fa fa-check'});
+                            this.$router.go();
+                        })
+                        .catch(() => {
+                            this.$toasted.show(
+                                'Ha ocurrido un error guardando la nueva categoria.',
+                                {duration: 3000, theme: 'bubble'}
+                            )
+                        })
+                },
+                createElement() {
+                    if (this.elementTypeId === itemElement.id) {
+                        this.createItem();
+                    } else if(this.elementTypeId === categoryElement.id) {
+                        this.createCategory();
+                    } else if(this.elementTypeId === partialExamElement.id) {
+                        this.createCoursePartialExam();
+                    }
+                }
+            }
 
-    });
-    var ItemMiniMenu = Vue.component('item-mini-menu', {
-        template: `
+        });
+        var ItemMiniMenu = Vue.component('item-mini-menu', {
+                template: `
                 <div>
                     <i class="fa fa-trash" v-on:click="showDeleteItemDialog()"></i>
                 </div>
             `,
-            props: ['itemId'],
-            methods: {
-                deleteItem(){
-                    return this.$store.dispatch(g_store.actions.DELETE_ITEM, this.itemId)
-                        .then(()=> {
-                            this.$toasted.show('Se ha borrado el item', {duration: 3000});
-                            this.$router.go();
-                        })
-                        .catch(()=> {
-                            this.$toasted.
-                            show('Ha habido un error al borrar el item, no se ha borrado', {duration: 3000, theme:'bubble'});
-                        });
-                },
-                showDeleteItemDialog() {
-                    this.$modal.show('dialog', {
-                        title: 'Eliminación de item',
-                        text: 'Estas a punto de eliminar un item',
-                        buttons: [
-                            {
-                                title: 'Borrar',
-                                handler: () => {
-                                    this.deleteItem()
-                                        .finally(()=>this.$modal.hide('dialog'));
+                props: ['itemId'],
+                methods: {
+                    deleteItem(){
+                        return this.$store.dispatch(g_store.actions.DELETE_ITEM, this.itemId)
+                            .then(()=> {
+                                this.$toasted.show('Se ha borrado el item', {duration: 3000});
+                                this.$router.go();
+                            })
+                            .catch(()=> {
+                                this.$toasted.
+                                show('Ha habido un error al borrar el item, no se ha borrado', {duration: 3000, theme:'bubble'});
+                            });
+                    },
+                    showDeleteItemDialog() {
+                        this.$modal.show('dialog', {
+                            title: 'Eliminación de item',
+                            text: 'Estas a punto de eliminar un item',
+                            buttons: [
+                                {
+                                    title: 'Borrar',
+                                    handler: () => {
+                                        this.deleteItem()
+                                            .finally(()=>this.$modal.hide('dialog'));
+                                    }
+                                },
+                                {
+                                    title: 'Cancelar'
                                 }
-                            },
-                            {
-                                title: 'Cancelar'
-                            }
-                        ]
-                    })
-                },
+                            ]
+                        })
+                    },
                 }
             }
         );
-    var CategoryMiniMenu = Vue.component('category-mini-menu', {
-            template: `
+        var CategoryMiniMenu = Vue.component('category-mini-menu', {
+                template: `
                 <div class ="category-mini-menu" v-bind:style="style">
                     <i class="fa fa-edit" v-on:click="showEditDialog"></i>
                     <i class="fa fa-plus" v-on:click="showAddElementDialog"></i>
                     <i class="fa fa-trash" v-show="showDelete"" v-on:click="showDeleteElementDialog"></i>
                 </div>
             `,
-        props: {
-            categoryId: [Number, String],
-            showDelete : {
-                type: Boolean,
-                required: false,
-                default: true
-            },
-            allowEditName : {
-                type: Boolean,
-                required: false,
-                default: true
-            }
-        },
-        data: function () {
-                return {
-                    style: {
-                        display: "grid",
-                        gridTemplateColumns: "repeat(3, max-content)",
-                        gridColumnGap: "8px"
+                props: {
+                    categoryId: [Number, String],
+                    showDelete : {
+                        type: Boolean,
+                        required: false,
+                        default: true
+                    },
+                    allowEditName : {
+                        type: Boolean,
+                        required: false,
+                        default: true
+                    }
+                },
+                data: function () {
+                    return {
+                        style: {
+                            display: "grid",
+                            gridTemplateColumns: "repeat(3, max-content)",
+                            gridColumnGap: "8px"
+                        }
+                    }
+                },
+                computed: {
+                    ...Vuex.mapGetters([
+                        'categoryById'
+                    ]),
+                    category: function () {
+                        return this.categoryById(this.categoryId);
+                    },
+                },
+                methods: {
+                    deleteCategory(){
+                        return this.$store.dispatch(g_store.actions.DELETE_CATEGORY, this.categoryId)
+                            .then(()=> {
+                                this.$toasted.show('Se ha borrado la categoria', {duration: 3000});
+                                this.$router.go();
+                            })
+                            .catch(()=> {
+                                this.$toasted.
+                                show('Ha habido un error al borrar la categoria, no se ha borrado', {duration: 3000, theme:'bubble'});
+                            });
+                    },
+                    showDeleteElementDialog() {
+                        this.$modal.show('dialog', {
+                            title: 'Eliminación de categoria',
+                            text: 'Estas a punto de eliminar una categoria',
+                            buttons: [
+                                {
+                                    title: 'Borrar',
+                                    handler: () => {
+                                        this.deleteCategory()
+                                            .finally(()=>this.$modal.hide('dialog'));
+                                    }
+                                },
+                                {
+                                    title: 'Cancelar'
+                                }
+                            ]
+                        })
+                    },
+                    showEditDialog() {
+                        this.$store.commit(
+                            g_store.mutations.SET_SELECTED_CATEGORY_ID,
+                            this.category.id);
+                        this.$modal.show(modalsEnum.EDIT_CATEGORY);
+                    },
+                    showAddElementDialog() {
+                        this.$store.commit(
+                            g_store.mutations.SET_SELECTED_CATEGORY_ID,
+                            this.category.id);
+                        this.$modal.show(modalsEnum.ADD_ELEMENT);
                     }
                 }
-        },
-        computed: {
-                ...Vuex.mapGetters([
-                    'categoryById'
-                ]),
-            category: function () {
-                    return this.categoryById(this.categoryId);
-                },
-        },
-        methods: {
-            deleteCategory(){
-              return this.$store.dispatch(g_store.actions.DELETE_CATEGORY, this.categoryId)
-                  .then(()=> {
-                      this.$toasted.show('Se ha borrado la categoria', {duration: 3000});
-                      this.$router.go();
-                  })
-                  .catch(()=> {
-                      this.$toasted.
-                      show('Ha habido un error al borrar la categoria, no se ha borrado', {duration: 3000, theme:'bubble'});
-                  });
-            },
-            showDeleteElementDialog() {
-                this.$modal.show('dialog', {
-                    title: 'Eliminación de categoria',
-                    text: 'Estas a punto de eliminar una categoria',
-                    buttons: [
-                        {
-                            title: 'Borrar',
-                            handler: () => {
-                                this.deleteCategory()
-                                    .finally(()=>this.$modal.hide('dialog'));
-                            }
-                        },
-                        {
-                            title: 'Cancelar'
-                        }
-                    ]
-                })
-            },
-            showEditDialog() {
-                this.$store.commit(
-                    g_store.mutations.SET_SELECTED_CATEGORY_ID,
-                    this.category.id);
-                this.$modal.show(modalsEnum.EDIT_CATEGORY);
-            },
-            showAddElementDialog() {
-                this.$store.commit(
-                    g_store.mutations.SET_SELECTED_CATEGORY_ID,
-                    this.category.id);
-                this.$modal.show(modalsEnum.ADD_ELEMENT);
             }
-        }
-        }
         );
         var ThCourse = Vue.component ('th-course', {
             template: `
@@ -676,8 +676,8 @@ define([
                 }
             }
         );
-    var ThCategory = Vue.component('th-category', {
-       template : `    
+        var ThCategory = Vue.component('th-category', {
+            template : `    
             <th
             :title="category.fullname"
             class="th-category"
@@ -698,121 +698,121 @@ define([
                 </flex-row>
             </th>
        `,
-        created() {
-            let text = this.category.fullname;
-            let length = 30;
-            let clamp = '...';
-            let node = document.createElement('div');
-            node.innerHTML = text;
-            let content = node.textContent;
-            this.catName = content.length > length ? content.slice(0, length) + clamp : content;
-            this.catWeight = this.$options.filters.round(this.aggregationCoef, 2) + '%';
-        },
-        props: ['element'],
-        data: function() {
-           return {
-               showFullName: false,
-               getCatClass: 'catnotfocused',
-               catGetWeightClass: 'catwnotfocused',
-               catName: "",
-               catWeight: "",
-               editZoneStyles: {
-                   'max-height': '45px'
-               },
-               showMenu: false
-           }
-        },
-        computed: {
-            ...Vuex.mapGetters([
-                'categoryById',
-                'categoryChildSize'
-            ]),
-            ...Vuex.mapState(['items']),
-            category: function() {
-                return this.categoryById(this.element.object.id);
+            created() {
+                let text = this.category.fullname;
+                let length = 30;
+                let clamp = '...';
+                let node = document.createElement('div');
+                node.innerHTML = text;
+                let content = node.textContent;
+                this.catName = content.length > length ? content.slice(0, length) + clamp : content;
+                this.catWeight = this.$options.filters.round(this.aggregationCoef, 2) + '%';
             },
-            childSize: function () {
-                return this.categoryChildSize(this.category.id);
-            },
-            categoryGradeItem: function () {
-              return this.items[this.category.grade_item];
-            },
-            aggregationCoef: function () {
-              return this.categoryGradeItem.aggregationcoef;
-            },
-            parentCategory: function() {
-                return this.categoryById(this.category.parent);
-            },
-            weightedAggregation : function () {
-                return g_enums.aggregations.PROMEDIO
-            }
-        },
-        methods: {
-            isNumber: function(evt) {
-                evt = (evt) ? evt : window.event;
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-                    evt.preventDefault();
-                } else {
-                    return true;
+            props: ['element'],
+            data: function() {
+                return {
+                    showFullName: false,
+                    getCatClass: 'catnotfocused',
+                    catGetWeightClass: 'catwnotfocused',
+                    catName: "",
+                    catWeight: "",
+                    editZoneStyles: {
+                        'max-height': '45px'
+                    },
+                    showMenu: false
                 }
             },
-            catFocus: function (){
-                //this.length = 17;
-                this.getCatClass = 'catwithfocus';
-                this.showFullName = true;
-                this.uptadeCatName();
+            computed: {
+                ...Vuex.mapGetters([
+                    'categoryById',
+                    'categoryChildSize'
+                ]),
+                ...Vuex.mapState(['items']),
+                category: function() {
+                    return this.categoryById(this.element.object.id);
+                },
+                childSize: function () {
+                    return this.categoryChildSize(this.category.id);
+                },
+                categoryGradeItem: function () {
+                    return this.items[this.category.grade_item];
+                },
+                aggregationCoef: function () {
+                    return this.categoryGradeItem.aggregationcoef;
+                },
+                parentCategory: function() {
+                    return this.categoryById(this.category.parent);
+                },
+                weightedAggregation : function () {
+                    return g_enums.aggregations.PROMEDIO
+                }
             },
-            catBlur: function (){
-                //this.length = 19;
-                this.getCatClass = 'catnotfocused';
-                this.showFullName = false;
-                this.updateCategoryName();
-            },
-            catWFocus: function (){
-                this.catGetWeightClass = 'catwwithfocus';
-                this.showFullName = true;
-                this.updateWeight();
-            },
-            catWBlur: function (){
-                this.catGetWeightClass = 'catwnotfocused';
-                this.showFullName = false;
-                this.saveAggregationCoef();
-            },
-            updateCategoryName: function () {
-             this.$store.dispatch(
-                 g_store.actions.UPDATE_CATEGORY,
-                 {...this.category, fullname: this.catName})
-           },
-            saveAggregationCoef: function() {
+            methods: {
+                isNumber: function(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                        evt.preventDefault();
+                    } else {
+                        return true;
+                    }
+                },
+                catFocus: function (){
+                    //this.length = 17;
+                    this.getCatClass = 'catwithfocus';
+                    this.showFullName = true;
+                    this.uptadeCatName();
+                },
+                catBlur: function (){
+                    //this.length = 19;
+                    this.getCatClass = 'catnotfocused';
+                    this.showFullName = false;
+                    this.updateCategoryName();
+                },
+                catWFocus: function (){
+                    this.catGetWeightClass = 'catwwithfocus';
+                    this.showFullName = true;
+                    this.updateWeight();
+                },
+                catWBlur: function (){
+                    this.catGetWeightClass = 'catwnotfocused';
+                    this.showFullName = false;
+                    this.saveAggregationCoef();
+                },
+                updateCategoryName: function () {
+                    this.$store.dispatch(
+                        g_store.actions.UPDATE_CATEGORY,
+                        {...this.category, fullname: this.catName})
+                },
+                saveAggregationCoef: function() {
                     this.$store.dispatch(g_store.actions.UPDATE_ITEM,
                         {...this.categoryGradeItem, aggregationcoef: this.catWeight})
 
-            },
-            uptadeCatName: function(){
-                if(this.showFullName){
-                    this.catName = this.category.fullname;
-                }else{
-                    this.catName = this.$options.filters.trunc(this.category.fullname, 30);
-                }
-            },
-            updateWeight: function(){
-                this.catWeight = this.$options.filters.round(this.aggregationCoef, 2);
-                if(this.catGetWeightClass === 'catwnotfocused'){
-                    this.catWeight += '%';
+                },
+                uptadeCatName: function(){
+                    if(this.showFullName){
+                        this.catName = this.category.fullname;
+                    }else{
+                        this.catName = this.$options.filters.trunc(this.category.fullname, 30);
+                    }
+                },
+                updateWeight: function(){
+                    this.catWeight = this.$options.filters.round(this.aggregationCoef, 2);
+                    if(this.catGetWeightClass === 'catwnotfocused'){
+                        this.catWeight += '%';
+                    }
                 }
             }
-           }
-    });
+        });
 
-    var ItemActionsMini = Vue.component('item-actions-mini', {
-        template:`
+        var ItemActionsMini = Vue.component('item-actions-mini', {
+            template:`
         
         `,
-        props: ['itemId']
-    });
-    var ThStudentNames = Vue.component('th-student-names', {
-       template: `
+            props: ['itemId']
+        });
+        var ThStudentNames = Vue.component('th-student-names', {
+            template: `
        <th class="th-student-names" :style="stickyStyles"> 
            <flex-row>
                <a v-on:click="changeOrderToLastame()">Apellidos</a> 
@@ -821,44 +821,44 @@ define([
            </flex-row> 
        </th>
        `,
-        data: function () {
-          return {
-              lastNameDirectionAsc: true,
-              firstNameDirectionAsc: true,
-              stickyStyles: {
-                  position: 'sticky',
-                  top: '0',
-                  left: '0',
-                  'background-clip': 'padding-box',
-                  'z-index': '999999'
-              }
-          }
-        },
-        methods: {
-           changeOrderToLastame() {
+            data: function () {
+                return {
+                    lastNameDirectionAsc: true,
+                    firstNameDirectionAsc: true,
+                    stickyStyles: {
+                        position: 'sticky',
+                        top: '0',
+                        left: '0',
+                        'background-clip': 'padding-box',
+                        'z-index': '999999'
+                    }
+                }
+            },
+            methods: {
+                changeOrderToLastame() {
 
-                this.$store.commit(
-                    g_store.mutations.SET_STUDENT_SORT_METHOD,
-                    {
-                        name: g_enums.sortStudentMethods.LAST_NAME,
-                        order: this.lastNameDirectionAsc? g_enums.sortDirection.ASC : 'desc'
-                    });
-                this.lastNameDirectionAsc = !this.lastNameDirectionAsc;
-           },
-            changeOrderToName() {
-                this.$store.commit(
-                    g_store.mutations.SET_STUDENT_SORT_METHOD,
-                    {
-                        name: g_enums.sortStudentMethods.FIRST_NAME,
-                        order: this.firstNameDirectionAsc? g_enums.sortDirection.ASC : 'desc'
-                    });
-                this.firstNameDirectionAsc = !this.firstNameDirectionAsc;
+                    this.$store.commit(
+                        g_store.mutations.SET_STUDENT_SORT_METHOD,
+                        {
+                            name: g_enums.sortStudentMethods.LAST_NAME,
+                            order: this.lastNameDirectionAsc? g_enums.sortDirection.ASC : 'desc'
+                        });
+                    this.lastNameDirectionAsc = !this.lastNameDirectionAsc;
+                },
+                changeOrderToName() {
+                    this.$store.commit(
+                        g_store.mutations.SET_STUDENT_SORT_METHOD,
+                        {
+                            name: g_enums.sortStudentMethods.FIRST_NAME,
+                            order: this.firstNameDirectionAsc? g_enums.sortDirection.ASC : 'desc'
+                        });
+                    this.firstNameDirectionAsc = !this.firstNameDirectionAsc;
+                }
             }
-        }
 
-    });
-    var TrItems = Vue.component('tr-items', {
-        template : `
+        });
+        var TrItems = Vue.component('tr-items', {
+            template : `
                     <tr class="tr-items">
                     <th-student-names></th-student-names>
                     <th colspan="1" v-for="additionalColumnAtFirst in additionalColumnsAtFirst" v-show="!additionalColumnAtFirst.hide">{{additionalColumnAtFirst.text}}</th>
@@ -878,28 +878,28 @@ define([
                      <th colspan="1" v-for="additionalColumnAtEnd in additionalColumnsAtEnd">{{additionalColumnAtEnd.text}}</th>
                      </tr>
    `,
-        computed: {
-            ...Vuex.mapGetters({
-                orderedItemIds: 'itemOrderIds'
-            }),
-            ...Vuex.mapState([
-                'additionalColumnsAtFirst',
-                'additionalColumnsAtEnd',
-                'items'
-            ])
-        },
+            computed: {
+                ...Vuex.mapGetters({
+                    orderedItemIds: 'itemOrderIds'
+                }),
+                ...Vuex.mapState([
+                    'additionalColumnsAtFirst',
+                    'additionalColumnsAtEnd',
+                    'items'
+                ])
+            },
 
-        data: function () {
-            return {
-                stickyStyles: {
-                    /*position: 'sticky',
-                    top: '0',
-                    'z-index': 4032,*/
-                    //'background-color': '#ffffff'
-                },
-            }
-        },
-    });
+            data: function () {
+                return {
+                    stickyStyles: {
+                        /*position: 'sticky',
+                        top: '0',
+                        'z-index': 4032,*/
+                        //'background-color': '#ffffff'
+                    },
+                }
+            },
+        });
         Vue.component('editable',{
             template: `<div contenteditable="true" @blur="update">{{content}}<span>{{sufix}}</span></div>`,
             props:['content', 'sufix'],
@@ -1008,10 +1008,10 @@ define([
                         g_store.actions.UPDATE_ITEM,
                         {...this.item, itemname: this.content}
                     );
-/*                        this.$store.dispatch(
-                            g_store.actions.UPDATE_ITEM,
-                            {...this.item, itemname: this.content}
-                        );*/
+                    /*                        this.$store.dispatch(
+                                                g_store.actions.UPDATE_ITEM,
+                                                {...this.item, itemname: this.content}
+                                            );*/
                 },
                 saveAggregationCoefChanges: function() {
                     this.$store.dispatch(
@@ -1235,14 +1235,14 @@ define([
                 props: ['studentId', 'studentIndex'],
                 computed: {
                     ...Vuex.mapState([
-                       'students',
+                        'students',
                         'grades'
                     ]),
                     ...Vuex.mapGetters([
                         'itemOrderIds'
                     ]),
                     student: function() {
-                      return this.students[this.studentId];
+                        return this.students[this.studentId];
                     },
                     /**
                      * Return the student grades ordered in the same order
@@ -1255,58 +1255,88 @@ define([
                             this.student.gradeIds,
                             this.grades,
                             this.itemOrderIds
-                            );
+                        );
                     }
                 }
             }
-            );
+        );
 
+        var PopUpWeight = Vue.component('popup-weight',
+            {
+                template: `
+                <div id="page-content" class="row pb-3 d-print-block">
+            <div id="region-main-box" class="col-12">
 
-
-
-       /* var Bar = Vue.component('VBar', {
-            mixins: [g_chartjs.Bar, g_vuechartjs.Bar],
-            props: {
-                chartdata: {
-                    type: Object,
-                    default: null
-                },
-                options: {
-                    type: Object,
-                    default: null
-                }
-            },
-            mounted () {
-                this.renderChart(this.chartdata, this.options)
+                <section id="region-main">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <span class="notifications" id="user-notifications"></span>
+                            <div role="main"><span id="maincontent"></span><div data-rel="fatalerror" class="box py-3 errorbox alert alert-warning">
+                                            <p class="errormessage">Advertencia: El total de los porcentajes dentro de una categoria o curso no suman 100, moodle los tomará como peso en vez de porcentaje</p>
+                                            <p class="errorcode"><a href="https://docs.moodle.org/311/en/Grade_aggregation#Weighted_mean" target="_blank">Mas informacion sobre esta advertencia</a></p></div>
+                                            <div class="continuebutton">
+    
+</div></div>
+                            
+                            
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+                `,
             }
-        });*/
+        );
 
-    /** Filter registry */
+
+
+
+        /* var Bar = Vue.component('VBar', {
+             mixins: [g_chartjs.Bar, g_vuechartjs.Bar],
+             props: {
+                 chartdata: {
+                     type: Object,
+                     default: null
+                 },
+                 options: {
+                     type: Object,
+                     default: null
+                 }
+             },
+             mounted () {
+                 this.renderChart(this.chartdata, this.options)
+             }
+         });*/
+
+        /** Filter registry */
         Vue.filter (g_filters.round.name, g_filters.round.func);
         Vue.filter (g_filters.trun.name, g_filters.trun.func);
 
-    var router = new VueRouter({
-        routes: g_router.routes
-    });
-     var app = new Vue({
-         store: store,
-         router: router,
-         components: {
-             ThCourse,
-             EditCategoryForm,
-             ThCategory,
-             TrItems,
-             ThItemManualAndMod
-         }
-     });
-    return {
-        init: function() {
+        var router = new VueRouter({
+            routes: g_router.routes
+        });
+        var app = new Vue({
+            store: store,
+            router: router,
+            components: {
+                ThCourse,
+                EditCategoryForm,
+                ThCategory,
+                TrItems,
+                ThItemManualAndMod,
+                PopUpWeight
+            }
+        });
+        return {
+            init: function() {
 
-            app.$mount('#app');
+                app.$mount('#app');
 
-            $(document).ready(function() {
-            });
-        }
-    };
-}
+                $(document).ready(function() {
+                });
+            }
+        };
+    }
 );
