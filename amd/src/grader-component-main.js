@@ -5,6 +5,8 @@ define([
 ], function (Vuex, g_enums, g_store) {
     var template = `
             <div class="customgrader">
+            
+            <popup-weight v-if="!isWeightHundred"></popup-weight>
                 <table v-if="students.length > 0" id="user-grades"  class="table">
                     <tbody>
                         <!-- COURSE_TR -->
@@ -63,7 +65,8 @@ define([
                 'categoryLevels',
                 'studentSetSorted',
                 'itemLevel',
-                'courseLevel'
+                'courseLevel',
+                'isWeightHundred'
             ]),
             additionalColumnsAtFirstLength: function () {
                 return this.additionalColumnsAtFirst.length;
@@ -73,6 +76,9 @@ define([
             },
             gradeHeaderColspan: function () {
                 return Number(this.courseLevel.colspan) + this.additionalColumnsAtEndLength;
+            },
+            weightHundred: function () {
+                return this.isWeightHundred;
             }
 
         },
@@ -80,8 +86,8 @@ define([
             this.$store.dispatch(g_store.actions.FETCH_STATE);
         }
     };
-   return {
-      component: component,
-      name: name
-   }
+    return {
+        component: component,
+        name: name
+    }
 });

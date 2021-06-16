@@ -78,7 +78,7 @@ define([
             categories /*: Array<Category> */: [],
             grades /*: Dict<gradeId:Grade> */: {},
             levels: [], // First level is course level, last level is item level, between
-            //this two levels are category levels
+            //these two levels are category levels
             course: {fullname: 'Nombre completo de el curso'},
             maxDisplayGrade: 5, //Used as a scale for the graphs
             gradeDisplayRange: 0.5, //Used to divide the scale in the line graph
@@ -212,12 +212,12 @@ define([
                     });
             },
             [actionsType.ADD_ITEM] ({commit, dispatch}, item) {
-              g_service.add_item(item)
-                  .then(response => {
-                      commit(mutationsType.ADD_ITEM, response.item);
-                      commit(mutationsType.SET_LEVELS, response.levels);
-                      dispatch(actionsType.FILL_GRADES_FOR_NEW_ITEM, response.item);
-                  });
+                g_service.add_item(item)
+                    .then(response => {
+                        commit(mutationsType.ADD_ITEM, response.item);
+                        commit(mutationsType.SET_LEVELS, response.levels);
+                        dispatch(actionsType.FILL_GRADES_FOR_NEW_ITEM, response.item);
+                    });
             },
             [actionsType.DELETE_ITEM_GRADES]({commit, state}, itemId) {
                 let gradeIds = Object.keys(state.grades);
@@ -232,13 +232,13 @@ define([
                 });
             },
             [actionsType.ADD_PARTIAL_EXAM] ({commit, getters}, partialExam) {
-              g_service.add_partial_exam(partialExam)
-                  .then(response => {
-                      commit(mutationsType.SET_LEVELS, response.levels);
-                      commit(mutationsType.ADD_CATEGORY, response.category);
-                      commit(mutationsType.ADD_ITEM, response.partial_item);
-                      commit(mutationsType.ADD_ITEM, response.optional_item);
-                  });
+                g_service.add_partial_exam(partialExam)
+                    .then(response => {
+                        commit(mutationsType.SET_LEVELS, response.levels);
+                        commit(mutationsType.ADD_CATEGORY, response.category);
+                        commit(mutationsType.ADD_ITEM, response.partial_item);
+                        commit(mutationsType.ADD_ITEM, response.optional_item);
+                    });
             },
             [actionsType.DELETE_CATEGORY_CHILDS] ({commit, getters, dispatch}, categoryId) {
                 const childItems = getters.categoryChildItems(categoryId);
@@ -248,7 +248,7 @@ define([
                     dispatch(actionsType.DELETE_ITEM_GRADES, item.id);
                 });
                 childCategories.forEach(category => {
-                   commit(mutationsType.DELETE_CATEGORY, category.id);
+                    commit(mutationsType.DELETE_CATEGORY, category.id);
                 });
 
             },
@@ -393,6 +393,54 @@ define([
             },
             itemSet: (state) => {
                 return Object.values(state.items);
+            },
+            isWeightHundred: (state, getters) => {
+                let categoryIds = getters.getCategoryIds;
+                if (!getters.categoryWeightsIsHundred(categoryIds[0], true)) {
+                    return false
+                }
+                for (i = 1; i < categoryIds.length; i++){
+                    if (!getters.categoryWeightsIsHundred(categoryIds[i])) {
+                        return false
+                    }
+                }
+                return true;
+            },
+            categoryWeightsIsHundred: (state, getters) => (categoryId, isCourse = false) => {
+                let weights = getters.getWeightsByCat(categoryId, isCourse);
+                console.log(weights);
+                let total = weights.reduce((a, b) => a + b, 0);
+                console.log(total);
+                return total == 0 || total == 100;
+            },
+            getWeightsByCat: (state) => (categoryId, isCourse = false) => {
+                let weights = 0;
+                if(isCourse){
+                    weights = Object.values(state.items).map(item => {
+                        if(item.categoryid == categoryId || item.categoryid == null){
+                            return Number(item.aggregationcoef);
+                        } else return 0;
+                    });
+                }else{
+                    weights = Object.values(state.items).map(item => {
+                        if(item.categoryid == categoryId){
+                            return Number(item.aggregationcoef);
+                        } else return 0;
+                    });
+                }
+                return weights;
+            },
+            getWeights: (state, getters) => {
+                let weights = Object.values(state.items).map(item => {
+                    return Number(item.aggregationcoef);
+                });
+                return weights;
+            },
+            getCategoryIds: (state) => {
+                let catIds = Object.values(state.categories).map(category => {
+                    return category.id;
+                })
+                return catIds;
             },
             /**
              * Use this getter newGradenewGrader item set when you should show
