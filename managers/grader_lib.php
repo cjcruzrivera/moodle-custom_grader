@@ -107,6 +107,11 @@ function getTeacher($id_curso)
        ORDER BY userenrol.timecreated ASC
        LIMIT 1) AS subc";
     $profesor = $DB->get_record_sql($query_teacher);
+
+    if (!$profesor) {
+        return false;
+    }
+
     return $profesor->fullname;
 }
 
