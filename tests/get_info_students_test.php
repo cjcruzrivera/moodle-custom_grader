@@ -25,8 +25,8 @@ require_once(__DIR__ . '/../managers/grader_lib.php');
 class get_info_students_testcase extends advanced_testcase
 {
     
-    /* Comprueba que el arreglo contenga los parametros solicitados (id, nombre, apellido y nombre de usuario) 
-    de los estudiantes con acompañamiento ases */
+    /* Comprueba que la funcion retorne un array el cual contenga los parametros solicitados (id, nombre, apellido y nombre de usuario) 
+    de los estudiantes con acompañamiento ases del curso*/
     public function test_info_students_complete()
 
     {
@@ -46,11 +46,27 @@ class get_info_students_testcase extends advanced_testcase
         $result = get_info_students($course->id);
         $this->assertIsArray($result);
 
-        //Pass
-        $this->assertEqualsCanonicalizing($result);
+        $cnt = count($result);
+        $cmpr = 0;
 
-        //Fail
-        $this->aseertEquals($result);
+     function testNegativeForassertTrue() {
+    
+        if ($cnt == $cmpr) {
+            
+            $assertvalue = false;
+            // Funcion de afirmacion que al marcar que contiene una falla nos indica que el curso en cuestion no 
+            // posee estudiantes con acompañamiento ases de lo contrario cuenta con 1 o mas estudiantes
+            $this->assertTrue(
+                $assertvalue,
+                "assert value is true or not"
+            );
+        }
+    
+          
+    }
+
+    
+    
     } 
 
 
