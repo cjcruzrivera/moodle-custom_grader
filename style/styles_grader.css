@@ -1,158 +1,186 @@
-#user-grades img.icon{
-    display: none !important;
+.is_ases,
+.is_ases th,
+.is_ases td {
+    background-color: #bdf2bd!important;
 }
 
-#user-grades{
-    margin-right: 15px;
-    background: #e6e7e8;
-    border: solid 10px #e6e7e8;
+table{
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
-*[id*="grade_"]	{
-    width: 50px !important;
+#user-grades td {
+    vertical-align: middle;
+    text-align: center;
+}
+.th-student-names a {
+    cursor: pointer;
 }
 
-.gradeparent{
-    width: -moz-max-content;    /* Firefox/Gecko */
-    width: -webkit-max-content; 
-    margin-right: 50px;
+
+.edit-category-form,
+.add-element-form {
+    padding: 15px;
+}
+.td-grade input {
+    width: 50px;
+}
+/**
+ * Moove theme styles needed
+ * @see https://moodle.org/plugins/theme_moove
+ */
+#region-main > .card {
+    overflow-x: initial;
 }
 
-#page-blocks-ases-view-global_grade_book{
-    width: 100% !important;    
+/** End Moove theme styles needed */
+
+
+.td-grade input::-webkit-outer-spin-button,
+.td-grade input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.highlightable{
-    width: 50px !important;
-    word-wrap: break-word;
+.customgrader {
+    height: 12.5cm;
+    overflow-x: auto;
 }
 
-.range, .controls, .useremail{
-    display:none !important;
+.customgrader table,
+.customgrader table td,
+.customgrader table th {
+    border: 1px solid #ccc;
 }
 
-#padre{
-    width: 400px;
+.customgrader table{
+    z-index: 1029;
+    position: relative;
+    background-color: #ffffff;
+    width:  100%;
 }
+
+
+.td-grade input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+.th-category {
+    min-width: 130%;
+}
+.table-grader th {
+    border: 1px solid #ccc;
+}
+
+.category-mini-menu:hover{
+    cursor: pointer;
+}
+
+.fa-trash{
+    cursor: pointer;
+}
+
+/*.th-student{
+    background-color: #ffffff;
+}*/
+
+.th-item-category{
+    background-color: #eae9e9 !important;
+}
+
+.th-item-course{
+    background-color: #eae9e9 !important;
+}
+
+th:last-child{
+    background-color: #eae9e9 !important;
+    /*position: sticky;
+    top: 0;*/
+}
+
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/*tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+    background-color: #f90010!important;
+}*/
 
 th{
-    text-align: center;
-    border-radius: 6px 6px  0 0;
+    position: sticky;
+    top: 0;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    background-color: inherit;
 }
 
-#region-main{
-    margin-left: 50px !important;
+.th-item-manual-and-mod{
+    min-width: 200px;
+    max-width: 200px;
 }
 
-/*///////////////////////////////////////////////////////////////////////////////////////////*/
-/*SOLO RAMA UNIVALLE*/
-.ases{
-    background: #8ed5b5 !important;
+.th-item-category{
+    min-width: 200px;
+    max-width: 200px;
 }
 
-.jumbotron {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 5px;
-    color: inherit;
-    background-color: #dcdcdd;
-  }
-
-  .jumbotron h2,
-.jumbotron .h2 {
-  color: inherit;
-  padding-left: 20px;
-}
-.jumbotron p {
-  margin-bottom: 15px;
-  font-size: 21px;
-  font-weight: 200;
-}
-.jumbotron > hr {
-  border-top-color: #d5d5d5;
+.th-student-names{
+    min-width: 300px;
+    max-width: 300px;
 }
 
-.act-notas{
+.v--modal-overlay{
+    z-index: 99999999!important;
+}
+
+.inotfocused{
+    background: rgba(255,255,255,0);
+    border: rgba(255,255,255,0);
+}
+
+.iwithfocus{
+    width: 170px;
+}
+
+.iwnotfocused{
+    background: rgba(255,255,255,0);
+    border: rgba(255,255,255,0);
+    width: 40px;
+}
+
+.iwwithfocus{
+    width: 40px;
+}
+
+.catnotfocused{
+    background: rgba(255,255,255,0);
+    border: rgba(255,255,255,0);
+    width: 100%;
+}
+
+.catwithfocus{
+    width: 100%;
+}
+
+.catwnotfocused{
+    background: rgba(255,255,255,0);
+    border: rgba(255,255,255,0);
+    width: 40px;
+}
+
+.catwwithfocus{
+    width: 40px;
+}
+
+.helpbutton{
     float: right;
-    background: #28a965 !important;
-    transition: 0.5s all;
 }
 
-.act-notas.first{
-    margin-top: 40px;
-}
-
-input{
-    text-align: center;
-}
-
-.act-notas:first-child{
-    margin-top: 37px;
-}
-
-.act-notas:hover{
-    color: #333;
-    background: #6fd49e !important;
-    text-decoration: none;
-    background-position: 0 -15px;
-}
-
-.category.catlevel1.cell.c1.lastcol{
-    background: #99bcd8;
-    font-size: 25px;
-    height: 30px;
-    border-bottom: 8px solid #e6e7e8;
-} 
-
-.user{
-    text-align: left;
-}
-
-
-.item2 { grid-area: menu;
- }
-.item3 { grid-area: main;}
-.item5 { grid-area: footer; }
-
-
-.grid-container {
-  width: 55%;  
-  display: grid;
-  grid-template-areas:
-    'menu main main main  '
-    'menu footer footer footer  ';
-  grid-gap: 2px;
-  background-color: #d5d5d5;
-  padding: 2px;
-  margin-bottom: 5px;
-}
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 20px;
-}
-
-td.cat, th.categoryitem{
-    border-right: 8px solid;
-    border-color: azure;
-}
-
-td.grade{
-    background: #d5d5d5;
-}
-
-tr.heading > th{
-    background:  rgb(198, 206, 215);;
-    border-radius: 0; 
-}
-
-th.category{
-    background: #b8b6b6
-}
-tr.heading > th.header{
-    background: rgb(214, 222, 229);
-}
-.quickfeedback{
-    display: none !important;
+.v--modal-box{
+    height: unset!important;
 }

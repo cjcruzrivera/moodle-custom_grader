@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bea947ae-f6ca-4b97-b6e8-a82b06fc6711" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/amd/src/grader.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4395">
+              <caret line="293" column="48" selection-start-line="293" selection-start-column="25" selection-end-line="293" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/amd/src/grader-router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="3" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/amd/src/grader-store.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7470">
+              <caret line="498" column="54" selection-start-line="498" selection-start-column="54" selection-end-line="498" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/managers/grader_lib.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2550">
+              <caret line="183" column="23" selection-start-line="183" selection-start-column="23" selection-end-line="183" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/amd/src/grader-graphs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="95" lean-forward="true" selection-start-line="6" selection-start-column="95" selection-end-line="6" selection-end-column="95" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/amd/build/grader-graphs.min.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/grader.vue.mustache">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/style/styles_grader.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2730">
+              <caret line="182" selection-start-line="182" selection-end-line="182" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/amd/src/grader-component-main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" column="56" lean-forward="true" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>vbar</find>
+      <find>context</find>
+      <find>studentscount</find>
+      <find>data</find>
+      <find>filter</find>
+      <find>normalized</find>
+      <find>ases</find>
+      <find>is_ases</find>
+      <find>api</find>
+      <find>max</find>
+      <find>grades</find>
+      <find>finalgrade</find>
+      <find>fetch</find>
+      <find>items</find>
+      <find>studentsases</find>
+      <find>add_item</find>
+      <find>student</find>
+      <find>grade</find>
+      <find>add_grade</find>
+      <find>gradeida</find>
+      <find>ITEMorderids</find>
+      <find>item</find>
+      <find>item.</find>
+      <find>g_utils</find>
+      <find>itemset</find>
+      <find>getters.gradesByItemId</find>
+      <find>{</find>
+      <find>grade.finalgrade &lt; grade.rawgrademax*0.6</find>
+      <find>getters.gradesSet</find>
+      <find>for</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Chart.js</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/amd/src/bootstrap-vue.common.js" />
+        <option value="$PROJECT_DIR$/amd/src/jd-table.js" />
+        <option value="$PROJECT_DIR$/amd/build/grader-component-main.min.js" />
+        <option value="$PROJECT_DIR$/amd/build/grader-enums.min.js" />
+        <option value="$PROJECT_DIR$/amd/build/grader-filters.min.js" />
+        <option value="$PROJECT_DIR$/amd/build/grader.min.js" />
+        <option value="$PROJECT_DIR$/amd/src/grader-filters.js" />
+        <option value="$PROJECT_DIR$/amd/build/Chart.min.js" />
+        <option value="$PROJECT_DIR$/amd/src/Chart.js" />
+        <option value="$PROJECT_DIR$/amd/src/anychart-base.js" />
+        <option value="$PROJECT_DIR$/amd/src/vue-chartjs.js" />
+        <option value="$PROJECT_DIR$/amd/build/vue-chartjs.min.js" />
+        <option value="$PROJECT_DIR$/templates/grader.vue.mustache" />
+        <option value="$PROJECT_DIR$/amd/src/grader-component-main.js" />
+        <option value="$PROJECT_DIR$/amd/src/grader-utils.js" />
+        <option value="$PROJECT_DIR$/amd/src/grader-store.js" />
+        <option value="$PROJECT_DIR$/amd/src/grader-router.js" />
+        <option value="$PROJECT_DIR$/style/styles_grader.css" />
+        <option value="$PROJECT_DIR$/amd/src/grader-graphs.js" />
+        <option value="$PROJECT_DIR$/amd/src/grader.js" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="800" />
+    <option name="y" value="31" />
+    <option name="width" value="800" />
+    <option name="height" value="869" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="customgrader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="customgrader" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="customgrader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="customgrader" type="462c0819:PsiDirectoryNode" />
+              <item name="amd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="customgrader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="customgrader" type="462c0819:PsiDirectoryNode" />
+              <item name="amd" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="customgrader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="customgrader" type="462c0819:PsiDirectoryNode" />
+              <item name="amd" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="customgrader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="customgrader" type="462c0819:PsiDirectoryNode" />
+              <item name="fonts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="customgrader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="customgrader" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="customgrader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bea947ae-f6ca-4b97-b6e8-a82b06fc6711" name="Default Changelist" comment="" />
+      <created>1561654537048</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1561654537048</updated>
+      <workItem from="1561654540384" duration="90000" />
+      <workItem from="1561728369956" duration="783000" />
+      <workItem from="1561730836945" duration="2318000" />
+      <workItem from="1561740349574" duration="559000" />
+      <workItem from="1562172226746" duration="255000" />
+      <workItem from="1569522322107" duration="1844000" />
+      <workItem from="1569531068973" duration="2502000" />
+      <workItem from="1569597585888" duration="3081000" />
+      <workItem from="1569857363650" duration="1817000" />
+      <workItem from="1569883176008" duration="1054000" />
+      <workItem from="1570117093540" duration="594000" />
+      <workItem from="1570460209969" duration="4422000" />
+      <workItem from="1570464750406" duration="6239000" />
+      <workItem from="1570546028917" duration="7943000" />
+      <workItem from="1570637268485" duration="6701000" />
+      <workItem from="1570655199872" duration="2592000" />
+      <workItem from="1570657906296" duration="1201000" />
+      <workItem from="1570722904892" duration="2301000" />
+      <workItem from="1570735634036" duration="4295000" />
+      <workItem from="1571237205964" duration="5029000" />
+      <workItem from="1571243525769" duration="1967000" />
+      <workItem from="1571245641796" duration="512000" />
+      <workItem from="1571251987688" duration="9202000" />
+      <workItem from="1571324876495" duration="3869000" />
+      <workItem from="1571408780228" duration="3417000" />
+      <workItem from="1571661414729" duration="9342000" />
+      <workItem from="1571751017440" duration="300000" />
+      <workItem from="1573046015559" duration="5206000" />
+      <workItem from="1573134862725" duration="1799000" />
+      <workItem from="1573653449641" duration="589000" />
+      <workItem from="1574081349260" duration="9643000" />
+      <workItem from="1574103318296" duration="6758000" />
+      <workItem from="1574254273606" duration="3985000" />
+      <workItem from="1574688767304" duration="8998000" />
+      <workItem from="1575298251794" duration="2590000" />
+      <workItem from="1575400157930" duration="9333000" />
+      <workItem from="1575662352801" duration="589000" />
+      <workItem from="1575910912101" duration="2048000" />
+      <workItem from="1575921689483" duration="6677000" />
+      <workItem from="1576003610596" duration="6838000" />
+      <workItem from="1576094382654" duration="4754000" />
+      <workItem from="1576176505389" duration="5686000" />
+      <workItem from="1576262500303" duration="1259000" />
+      <workItem from="1576265826786" duration="95000" />
+      <workItem from="1576529373033" duration="1518000" />
+      <workItem from="1576611142613" duration="178000" />
+      <workItem from="1576611797335" duration="2423000" />
+      <workItem from="1576696423814" duration="608000" />
+      <workItem from="1576791115483" duration="984000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="166796000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-3" y="31" width="1606" height="872" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32092425" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32977304" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/amd/src/grader-utils.js</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/amd/src/grader-utils.js</url>
+          <line>4</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/classes/custom_grade_category.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lang/es_co/local_customgrader.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-vue-toasted.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/bootstrap-vue.js" />
+    <entry file="file://$PROJECT_DIR$/amd/src/bootstrap-vue.common.js" />
+    <entry file="file://$PROJECT_DIR$/amd/src/jd-table.js" />
+    <entry file="file://$PROJECT_DIR$/amd/build/grader-component-main.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3172" selection-start-column="3172" selection-end-column="3172" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-constants.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-enums.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/build/grader-enums.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="113" lean-forward="true" selection-start-column="113" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/build/grader-filters.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="35" lean-forward="true" selection-start-column="35" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-vue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-177993">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/wizard_categories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="832" column="54" lean-forward="true" selection-start-line="832" selection-start-column="54" selection-end-line="832" selection-end-column="54" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/build/grader.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25411" selection-start-column="25411" selection-end-column="25411" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-vuex.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4800">
+          <caret line="320" selection-start-line="320" selection-end-line="320" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-vue-js-modal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5148" selection-start-column="5148" selection-end-column="5148" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-lodash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-vue-resource.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-loading-indicator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/vendor-vue-router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/anychart-base.js" />
+    <entry file="file://$PROJECT_DIR$/amd/src/vue-chartjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="171" selection-start-column="163" selection-end-column="171" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/Chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="9" column="334" selection-start-line="9" selection-start-column="334" selection-end-line="9" selection-end-column="334" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/build/Chart.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2191">
+          <caret line="9" column="152189" lean-forward="true" selection-start-line="9" selection-start-column="152189" selection-end-line="9" selection-end-column="152189" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/build/vue-chartjs.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lang/es/local_customgrader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lang/en/local_customgrader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/api_views.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/custom_grade_report_grader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2220">
+          <caret line="161" column="33" selection-start-line="161" selection-start-column="28" selection-end-line="161" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4395">
+          <caret line="293" column="48" selection-start-line="293" selection-start-column="25" selection-end-line="293" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="3" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7470">
+          <caret line="498" column="54" selection-start-line="498" selection-start-column="54" selection-end-line="498" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/grader_lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2550">
+          <caret line="183" column="23" selection-start-line="183" selection-start-column="23" selection-end-line="183" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/grader.vue.mustache">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/styles_grader.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2730">
+          <caret line="182" selection-start-line="182" selection-end-line="182" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-component-main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="56" lean-forward="true" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/src/grader-graphs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="95" lean-forward="true" selection-start-line="6" selection-start-column="95" selection-end-line="6" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amd/build/grader-graphs.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+</project>
